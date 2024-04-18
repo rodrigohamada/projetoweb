@@ -22,7 +22,20 @@ header {
     max-height: 100px;
     margin-left: 10px;
     object-fit: contain;
+    transition: transform 0.3s;
+    /* Adiciona uma transição suave de 0.3 segundos para o efeito */
 }
+
+.logo:hover {
+    transform: scale(1.1);
+    /* Aumenta ligeiramente o tamanho do logo quando o cursor do mouse passar por cima */
+}
+
+.logo a {
+    text-decoration: none;
+    /* Remove o sublinhado padrão do link */
+}
+
 
 nav {
     flex-grow: 1;
