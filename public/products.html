@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic - Produtos Orgânicos</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="stylesheet" href="./style/products.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="#" id="products-link">Produtos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+            </ul>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <h1 class="products-title">Produtos</h1>
+        <!-- Lista de produtos -->
+        <div class="product-container">
+            <!-- Produto 1 -->
+            <div class="product-item">
+                <img src="./images/cesta-legumes.jpg" alt="Cesta Dia a Dia">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Dia a Dia</h3>
+                    <p class="product-description">Verduras e Legumes que auxiliam a manter uma alimentação saudável no
+                        dia-a-dia.<br><strong>Contém:</strong> Cenoura, Tomate, Beterraba, Pimentão Verde, Tempero
+                        Verde, Brócolis, Alface, Cebola, Batata.</p>
+                    <p class="product-price">R$80.00</p>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-item">
+                <img src="./images/cesta-frutas.png" alt="Cesta Vida">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Vida</h3>
+                    <p class="product-description">Frutas que auxiliam a manter uma alimentação saudável
+                        para a sua vida.<br><strong>Contém:</strong> Uva Verde, Uva Roxa, Maçã, Pêra, Banana, Laranja,
+                        Kiwi, Melão, Mamão.</p>
+                    <p class="product-price">R$90.00</p>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-item">
+                <img src="./images/cesta-detox.jpg" alt="Cesta Detox">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Detox</h3>
+                    <p class="product-description">Frutas e vegetais com propriedades antioxidantes e diuréticas que
+                        ajudam a melhorar a digestão, diminuir a retenção de líquidos e favorecer o
+                        emagrecimento.<br><strong>Contém:</strong> Abacaxi, Beterraba, Cenoura, Couve, Gengibre,
+                        Laranja, Limão, Maçã, Morango.</p>
+                    <p class="product-price">R$70.00</p>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-item">
+                <img src="./images/cesta-fitness.jpg" alt="Cesta Fitness">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Fitness</h3>
+                    <p class="product-description">Cesta Fitness para homens e mulheres que desejam complementar uma
+                        vida saudável com praticidade​.<br><strong>Contém:</strong> Abobrinha, Alface, Banana Prata,
+                        Batata Doce, Beringela, Brócolis, Cenoura, Couve Flor, Morango, Ovos Brancos, Tomate.</p>
+                    <p class="product-price">R$100.00</p>
+                </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-item">
+                <img src="./images/cesta-familia.png" alt="Cesta Família">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Família</h3>
+                    <p class="product-description">Praticidade e saúde no dia-a-dia da família! Cuide de quem você ama
+                        com uma alimentação saudável​.<br><strong>Contém:</strong> Abacaxi, Alface, Banana Prata, Batata
+                        Doce, Batata, Brócolis, Couve Flor, Cebola, Cenoura, Chuchu, Maçã, Mamão, Manga, Morango,
+                        Tempero Verde, Tomate.</p>
+                    <p class="product-price">R$165.00</p>
+                </div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="product-item">
+                <img src="./images/cesta-green.png" alt="Cesta Green">
+                <div class="product-info">
+                    <h3 class="product-name">Cesta Green</h3>
+                    <p class="product-description">Vegetais e frutas verdes para ajudar no equilíbrio da sua
+                        saúde​.<br><strong>Contém:</strong> Melancia, Cheiro Verde, Pimentão Verde, Couve Flor,
+                        Brócolis, Chuchu, Cebolinha, Salsinha, Pêra, Uva Verde, Alface, Pepino.</p>
+                    <p class="product-price">R$70.00</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Desenvolvido por Rodrigo Hamada & Felipe Manganelli | IFSP Campinas</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/mobile.js"></script>
+
+    <!-- Biblioteca Slick Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+</body>
+
+</html>
