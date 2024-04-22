@@ -74,3 +74,13 @@ body {
     text-decoration: none;
     /* Remove o sublinhado padrão do link */
 }
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s; 
+}
+
+.author-link:hover {
+    color: #ffa100; 
+}

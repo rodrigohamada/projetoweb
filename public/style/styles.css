@@ -486,3 +486,15 @@ main {
     text-decoration: none;
     /* Remove o sublinhado padrão do link */
 }
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    /* Adiciona uma transição suave de cor ao passar o mouse */
+}
+
+.author-link:hover {
+    color: #ffa100;
+    /* Altera a cor ao passar o mouse */
+}

@@ -252,3 +252,13 @@ nav ul li a:hover {
         margin: 10px 0;
     }
 }
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.author-link:hover {
+    color: #ffa100;
+}
