@@ -13,7 +13,7 @@
 <body>
 
     <header>
-        <a href="index.html"> <!-- Link para a página inicial -->
+        <a href="index.html">
             <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
         </a>
         <nav>
@@ -33,7 +33,6 @@
 
     <main id="main-content">
         <h1 class="products-title">Produtos</h1>
-        <!-- Lista de produtos -->
         <div class="product-container">
             <!-- Produto 1 -->
             <div class="product-item">
@@ -44,6 +43,8 @@
                         dia-a-dia.<br><strong>Contém:</strong> Cenoura, Tomate, Beterraba, Pimentão Verde, Tempero
                         Verde, Brócolis, Alface, Cebola, Batata.</p>
                     <p class="product-price">R$80.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Dia a Dia', 'Verduras e Legumes que auxiliam a manter uma alimentação saudável no dia-a-dia.<br><strong>Contém:</strong> Cenoura, Tomate, Beterraba, Pimentão Verde, Tempero Verde, Brócolis, Alface, Cebola, Batata.', 80)">Comprar</button>
                 </div>
             </div>
 
@@ -56,6 +57,8 @@
                         para a sua vida.<br><strong>Contém:</strong> Uva Verde, Uva Roxa, Maçã, Pêra, Banana, Laranja,
                         Kiwi, Melão, Mamão.</p>
                     <p class="product-price">R$90.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Vida', 'Frutas que auxiliam a manter uma alimentação saudável para a sua vida.<br><strong>Contém:</strong> Uva Verde, Uva Roxa, Maçã, Pêra, Banana, Laranja, Kiwi, Melão, Mamão.', 90)">Comprar</button>
                 </div>
             </div>
 
@@ -69,6 +72,8 @@
                         emagrecimento.<br><strong>Contém:</strong> Abacaxi, Beterraba, Cenoura, Couve, Gengibre,
                         Laranja, Limão, Maçã, Morango.</p>
                     <p class="product-price">R$70.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Detox', 'Frutas e vegetais com propriedades antioxidantes e diuréticas que ajudam a melhorar a digestão, diminuir a retenção de líquidos e favorecer o emagrecimento.<br><strong>Contém:</strong> Abacaxi, Beterraba, Cenoura, Couve, Gengibre, Laranja, Limão, Maçã, Morango.', 70)">Comprar</button>
                 </div>
             </div>
 
@@ -81,6 +86,8 @@
                         vida saudável com praticidade​.<br><strong>Contém:</strong> Abobrinha, Alface, Banana Prata,
                         Batata Doce, Beringela, Brócolis, Cenoura, Couve Flor, Morango, Ovos Brancos, Tomate.</p>
                     <p class="product-price">R$100.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Fitness', 'Cesta Fitness para homens e mulheres que desejam complementar uma vida saudável com praticidade​.<br><strong>Contém:</strong> Abobrinha, Alface, Banana Prata, Batata Doce, Beringela, Brócolis, Cenoura, Couve Flor, Morango, Ovos Brancos, Tomate.', 100)">Comprar</button>
                 </div>
             </div>
 
@@ -94,6 +101,8 @@
                         Doce, Batata, Brócolis, Couve Flor, Cebola, Cenoura, Chuchu, Maçã, Mamão, Manga, Morango,
                         Tempero Verde, Tomate.</p>
                     <p class="product-price">R$165.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Família', 'Praticidade e saúde no dia-a-dia da família! Cuide de quem você ama com uma alimentação saudável​.<br><strong>Contém:</strong> Abacaxi, Alface, Banana Prata, Batata Doce, Batata, Brócolis, Couve Flor, Cebola, Cenoura, Chuchu, Maçã, Mamão, Manga, Morango, Tempero Verde, Tomate.', 165)">Comprar</button>
                 </div>
             </div>
 
@@ -106,9 +115,30 @@
                         saúde​.<br><strong>Contém:</strong> Melancia, Cheiro Verde, Pimentão Verde, Couve Flor,
                         Brócolis, Chuchu, Cebolinha, Salsinha, Pêra, Uva Verde, Alface, Pepino.</p>
                     <p class="product-price">R$70.00</p>
+                    <button class="buy-button"
+                        onclick="addToCart('Cesta Green', 'Vegetais e frutas verdes para ajudar no equilíbrio da sua saúde​.<br><strong>Contém:</strong> Melancia, Cheiro Verde, Pimentão Verde, Couve Flor, Brócolis, Chuchu, Cebolinha, Salsinha, Pêra, Uva Verde, Alface, Pepino.', 70)">Comprar</button>
                 </div>
             </div>
         </div>
+
+        <script>
+            function addToCart(name, description, price) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name, description, price, quantity: 1 });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Produto adicionado ao carrinho!');
+                updateCartCounter();
+            }
+
+            function updateCartCounter() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let cartCounter = document.getElementById('cart-counter');
+                if (cartCounter) {
+                    cartCounter.innerText = cart.length.toString();
+                }
+            }
+        </script>
+
     </main>
 
     <footer class="footer">
@@ -121,8 +151,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./javascript/script.js"></script>
     <script src="./javascript/mobile.js"></script>
-
-    <!-- Biblioteca Slick Carousel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
