@@ -1,0 +1,500 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #228B22;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100px;
+    margin-left: 10px;
+    object-fit: contain;
+}
+
+nav {
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+nav ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffa100;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+}
+
+nav ul li a:hover {
+    color: #ffa100;
+}
+
+.mobile-menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.mobile-menu-icon span {
+    height: 3px;
+    width: 25px;
+    background-color: #fff;
+    margin: 4px 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu li:last-child {
+    margin-right: 0;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.menu li a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffa100;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.menu li a:hover::before {
+    transform: scaleX(1);
+}
+
+.menu li a:hover {
+    color: #ffa100;
+}
+
+/* Estilos para dispositivos móveis */
+@media screen and (max-width: 768px) {
+
+    /* Esconde o menu principal em telas menores */
+    .menu {
+        display: none;
+    }
+
+    /* Exibe o ícone do menu para dispositivos móveis */
+    .mobile-menu-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-right: 10px;
+        z-index: 100;
+        /* Define um z-index maior */
+    }
+
+    /* Ícone do menu */
+    .mobile-menu-icon span {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    /* Animação do ícone de menu ao ser clicado */
+    .mobile-menu-icon.open span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 5px);
+    }
+
+    .mobile-menu-icon.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-icon.open span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+
+    /* Exibe o menu quando estiver aberto */
+    .menu.open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #228B22;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding-top: 10px;
+        z-index: 99;
+        /* Define um z-index menor */
+    }
+
+    .menu.open li {
+        margin: 10px 0;
+    }
+}
+
+main {
+    padding: 20px;
+    margin-bottom: 80px;
+}
+
+.footer {
+    background-color: #228B22;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
+.slider {
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.slide-item {
+    position: relative;
+}
+
+.slide-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.slide-info h2,
+.slide-info p {
+    margin: 0;
+    padding: 0;
+}
+
+.slide-info h2 {
+    font-size: 18px;
+}
+
+.slide-info p {
+    font-size: 14px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.popup h2 {
+    margin-bottom: 20px;
+}
+
+.popup input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup button {
+    width: 100%;
+    padding: 10px;
+    background-color: #228B22;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup button:hover {
+    background-color: #1a751d;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #aaa;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup h2 {
+    margin-top: 0;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #000;
+    text-decoration: none;
+}
+
+.register-form {
+    width: calc(100% - 40px);
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.register-form input,
+.register-form button {
+    width: calc(100% - 20px);
+    margin: 5px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .popup {
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .register-form input,
+    .register-form button,
+    .register-form select {
+        width: calc(100% - 20px);
+        margin: 5px 0;
+    }
+
+    .address-inputs input {
+        width: calc(100% - 20px);
+        margin: 5px 0;
+    }
+}
+
+.address-inputs input {
+    flex: 1;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.address-inputs input:last-child {
+    margin-right: 0;
+}
+
+.address-inputs button {
+    margin-top: 10px;
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form .input-group {
+    margin-bottom: 15px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #228B22;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #1A751D;
+}
+
+.signup-link {
+    text-align: center;
+}
+
+.login-container {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #228B22;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.icon-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.icon-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.icon {
+    margin: 0 10px;
+}
+
+.icon img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.icon h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.icon p {
+    font-size: 14px;
+    color: #666;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100px;
+    margin-left: 10px;
+    object-fit: contain;
+    transition: transform 0.3s;
+    /* Adiciona uma transição suave de 0.3 segundos para o efeito */
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    /* Aumenta ligeiramente o tamanho do logo quando o cursor do mouse passar por cima */
+}
+
+.logo a {
+    text-decoration: none;
+    /* Remove o sublinhado padrão do link */
+}
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+    /* Adiciona uma transição suave de cor ao passar o mouse */
+}
+
+.author-link:hover {
+    color: #ffa100;
+    /* Altera a cor ao passar o mouse */
+}
