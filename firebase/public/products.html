@@ -127,7 +127,7 @@
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push({ name, description, price, quantity: 1 });
                 localStorage.setItem('cart', JSON.stringify(cart));
-                alert('Produto adicionado ao carrinho!');
+                alert('Produto adicionado à página de Pedidos!');
                 updateCartCounter();
             }
 
