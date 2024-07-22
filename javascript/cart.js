@@ -47,7 +47,7 @@ document.getElementById('checkout-button').addEventListener('click', () => {
         return;
     }
 
-    // Lógica para finalizar a compra
+    // Finalizar a compra
     alert('Compra finalizada com sucesso!');
     cart = [];
     localStorage.removeItem('cart'); // Limpa o carrinho no localStorage
