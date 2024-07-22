@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Pedidos - Organic</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="stylesheet" href="./style/cadastro_pedidos.css">
+    <link rel="icon" href="./images/folha.png">
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="products.html">Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+            </ul>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <h1>Cadastro de Pedidos</h1>
+        <div id="order-list"></div>
+        <div class="total-price" id="total-price"></div>
+        <button id="finalize-button" style="display:none;" onclick="finalizePurchase()">Concluir Compra</button>
+    </main>
+
+    <footer class="footer">
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
+                class="author-link">Rodrigo Hamada</a> & <a
+                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
+                Manganelli</a> | IFSP Campinas</p>
+    </footer>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let orderList = document.getElementById('order-list');
+            orderList.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                let orderItem = document.createElement('div');
+                orderItem.className = 'order-item';
+
+                let productInfo = document.createElement('div');
+                productInfo.className = 'product-info';
+                productInfo.innerHTML = `<h3>${item.name}</h3><p>${item.description}</p><p class="product-price">R$${item.price.toFixed(2)}</p>`;
+
+                let quantityInput = document.createElement('div');
+                quantityInput.className = 'quantity-input';
+                quantityInput.innerHTML = `<label>Quantidade:</label><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">`;
+
+                let removeButton = document.createElement('button');
+                removeButton.className = 'remove-button';
+                removeButton.innerText = 'Remover';
+                removeButton.onclick = () => removeItem(index);
+
+                orderItem.appendChild(productInfo);
+                orderItem.appendChild(quantityInput);
+                orderItem.appendChild(removeButton);
+
+                orderList.appendChild(orderItem);
+            });
+
+            updateTotalPrice();
+        }
+
+        function updateQuantity(index, quantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity = parseInt(quantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateTotalPrice();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function updateTotalPrice() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('total-price').innerText = `Total: R$${totalPrice.toFixed(2)}`;
+
+            // Mostrar ou esconder o botão "Concluir Compra"
+            const finalizeButton = document.getElementById('finalize-button');
+            if (cart.length > 0) {
+                finalizeButton.style.display = 'block';
+            } else {
+                finalizeButton.style.display = 'none';
+            }
+        }
+
+        function finalizePurchase() {
+            // Verifica se o usuário está logado
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                // Lógica para finalizar a compra
+                alert('Compra concluída com sucesso!');
+                localStorage.removeItem('cart');
+                loadCart();
+            } else {
+                // Redireciona para a página de login
+                window.location.href = 'login.html';
+            }
+        }
+
+        window.onload = loadCart;
+    </script>
+
+</body>
+
+</html>

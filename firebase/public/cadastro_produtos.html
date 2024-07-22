@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos - Organic</title>
+    <link rel="stylesheet" href="./style/cadastro_produtos.css">
+    <link rel="icon" href="./images/folha.png">
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="products.html">Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+            </ul>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="login-form">
+            <h2>Cadastro de Produtos</h2>
+            <div class="input-group">
+                <input type="text" id="productName" placeholder="Nome do Produto" required>
+            </div>
+            <div class="input-group">
+                <input type="number" id="productPrice" placeholder="Preço do Produto" step="0.01" required>
+            </div>
+            <div class="input-group">
+                <textarea id="productDescription" placeholder="Descrição do Produto" required></textarea>
+            </div>
+            <button id="register-button" type="submit">Cadastrar Produto</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
+                class="author-link">Rodrigo Hamada</a> & <a
+                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
+                Manganelli</a> | IFSP Campinas</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/login.js"></script>
+    <script src="./javascript/mobile.js"></script>
+
+</body>
+
+</html>
