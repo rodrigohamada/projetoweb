@@ -440,3 +440,20 @@ h1 {
 .author-link:hover {
     text-decoration: underline;
 }
+
+#finalize-button {
+    width: auto;
+    padding: 8px 20px;
+    background-color: #228B22;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto 0;
+}
+
+#finalize-button:hover {
+    background-color: #1a751d;
+}

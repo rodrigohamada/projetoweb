@@ -1,130 +1,89 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organic - Cestas Orgânicas</title>
-    <link rel="stylesheet" href="./style/styles.css">
-    <link rel="icon" href="./images/folha.png">
-</head>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/10.12.4/firebase-app-compat.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/10.12.4/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-database-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-functions-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-messaging-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-storage-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-analytics-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-remote-config-compat.js"></script>
+    <script defer src="/__/firebase/10.12.4/firebase-performance-compat.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-<body>
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    </div>
+    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <header>
-        <a href="index.html"> <!-- Adiciona um link para a página inicial -->
-            <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
-        </a>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html" id="home-link">Home</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="products.html">Produtos</a></li>
-                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
-                <li><a href="login.html" id="login-link">Login</a></li>
-            </ul>
-            <div class="mobile-menu-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.firestore().doc('/foo/bar').get().then(() => { });
+        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        // firebase.analytics(); // call to activate
+        // firebase.analytics().logEvent('tutorial_completed');
+        // firebase.performance(); // call to activate
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-    <main id="main-content">
-        <div class="slider">
-            <div>
-                <div class="slide-item">
-                    <a href="products.html">
-                        <img src="./images/slide1.jpg" alt="Slide 1">
-                        <div class="slide-info">
-                            <h2 class="title">Produtos Orgânicos</h2>
-                            <p class="description">Conheça nossa variedade de produtos orgânicos frescos e saudáveis.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="slide-item">
-                    <a href="login.html">
-                        <img src="./images/slide2.png" alt="Slide 2">
-                        <div class="slide-info">
-                            <h2 class="title">Login</h2>
-                            <p class="description">Faça seu login para acessar sua conta e realizar pedidos com
-                                facilidade.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="slide-item">
-                    <a href="sobre.html">
-                        <img src="./images/slide3.jpg" alt="Slide 3">
-                        <div class="slide-info">
-                            <h2 class="title">Sobre Nós</h2>
-                            <p class="description">Saiba mais sobre nossa cooperativa e nossa missão em fornecer
-                                alimentos orgânicos de qualidade.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Ícones -->
-        <div class="icon-container">
-            <div class="icon-row">
-                <div class="icon">
-                    <img src="./images/casa.png" alt="Casa">
-                    <h3>Pensado em você</h3>
-                    <p>Escolha seus produtos favoritos.</p>
-                </div>
-                <div class="icon">
-                    <img src="./images/caminhao.png" alt="Caminhão">
-                    <h3>Receba em casa</h3>
-                    <p>De segunda à sexta 08:00 às 18h. Sábados até 12:00.</p>
-                </div>
-                <div class="icon">
-                    <img src="./images/qualidade.png" alt="Qualidade">
-                    <h3>Qualidade</h3>
-                    <p>Carinho e cuidado em cada detalhe do início ao fim.</p>
-                </div>
-            </div>
-            <div class="icon-row">
-                <div class="icon">
-                    <img src="./images/segurança.png" alt="Segurança">
-                    <h3>Praticidade e segurança</h3>
-                    <p>Compre seus produtos indispensáveis sem sair de casa.</p>
-                </div>
-                <div class="icon">
-                    <img src="./images/confiança.png" alt="Confiança">
-                    <h3>Confiabilidade</h3>
-                    <p>Verduras, Frutas e Hortaliças com certificação.</p>
-                </div>
-                <div class="icon">
-                    <img src="./images/respeito.png" alt="Respeito">
-                    <h3>Respeito</h3>
-                    <p>Nós respeitamos a natureza e a integridade com o consumidor.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
-                class="author-link">Rodrigo Hamada</a> & <a
-                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
-                Manganelli</a> | IFSP Campinas</p>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./javascript/script.js"></script>
-    <script src="./javascript/mobile.js"></script>
-
-    <!-- Biblioteca Slick Carousel -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-</body>
-
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -1,6 +1,3 @@
-// Array para armazenar os dados dos usuários cadastrados
-var usersData = [];
-
 $(document).ready(function () {
     // Abrir pop-up de cadastro
     $('#register-popup').click(function (e) {
@@ -42,28 +39,39 @@ $(document).ready(function () {
             return;
         }
 
-        // Verificar se o e-mail é válido apenas se o campo estiver preenchido
-        if (userData.email && !isValidEmail(userData.email)) {
+        // Verificar se o e-mail é válido
+        if (!isValidEmail(userData.email)) {
             alert('Por favor, insira um endereço de e-mail válido.');
             return;
         }
 
-        // Simular cadastro bem sucedido (ou erro)
-        var isSuccess = Math.random() < 0.5; // Simula sucesso aleatório
-
-        if (isSuccess) {
-            // Adicionar os dados do usuário ao array de usuários cadastrados
-            usersData.push(userData);
-
-            // Exibir mensagem de sucesso
-            showConfirmationPopup('Usuário cadastrado com sucesso!');
-        } else {
-            // Exibir mensagem de erro
-            showConfirmationPopup('Erro ao cadastrar usuário');
-        }
-
-        // Fechar o pop-up após o cadastro
-        $('#overlay').fadeOut(300);
+        // Criar usuário no Firebase Authentication
+        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+            .then((userCredential) => {
+                // Adicionar os dados do usuário ao Firestore
+                var user = userCredential.user;
+                return firestore.collection('users').doc(user.uid).set({
+                    name: userData.name,
+                    phone: userData.phone,
+                    cep: userData.cep,
+                    rua: userData.rua,
+                    cidade: userData.cidade,
+                    estado: userData.estado,
+                    bairro: userData.bairro,
+                    numero: userData.numero,
+                    complemento: userData.complemento,
+                    email: userData.email
+                });
+            })
+            .then(() => {
+                // Exibir mensagem de sucesso
+                showConfirmationPopup('Usuário cadastrado com sucesso!');
+                $('#overlay').fadeOut(300);
+            })
+            .catch((error) => {
+                // Exibir mensagem de erro
+                showConfirmationPopup('Erro ao cadastrar usuário: ' + error.message);
+            });
     });
 
     // Fechar a mensagem de confirmação de cadastro

@@ -36,6 +36,7 @@
         <h1>Cadastro de Pedidos</h1>
         <div id="order-list"></div>
         <div class="total-price" id="total-price"></div>
+        <button id="finalize-button" style="display:none;" onclick="finalizePurchase()">Concluir Compra</button>
     </main>
 
     <footer class="footer">
@@ -96,6 +97,28 @@
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('total-price').innerText = `Total: R$${totalPrice.toFixed(2)}`;
+            
+            // Mostrar ou esconder o botão "Concluir Compra"
+            const finalizeButton = document.getElementById('finalize-button');
+            if (cart.length > 0) {
+                finalizeButton.style.display = 'block';
+            } else {
+                finalizeButton.style.display = 'none';
+            }
+        }
+
+        function finalizePurchase() {
+            // Verifica se o usuário está logado
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                // Lógica para finalizar a compra
+                alert('Compra concluída com sucesso!');
+                localStorage.removeItem('cart');
+                loadCart();
+            } else {
+                // Redireciona para a página de login
+                window.location.href = 'login.html';
+            }
         }
 
         window.onload = loadCart;
