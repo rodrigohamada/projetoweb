@@ -428,7 +428,8 @@ h1 {
     color: white;
     text-align: center;
     padding: 10px 0;
-    margin-top: 20px;
+    margin-top: 15.3cm;
+    flex-shrink: 0;
 }
 
 .author-link {
