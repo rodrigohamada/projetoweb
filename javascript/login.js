@@ -118,3 +118,5 @@ function showConfirmationPopup(message) {
     $('.confirmation-popup p').text(message);
     $('.confirmation-popup').fadeIn(300);
 }
+
+
