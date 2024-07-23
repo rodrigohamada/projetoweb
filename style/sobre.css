@@ -94,6 +94,8 @@ footer.footer {
 .about-right {
     display: flex;
     flex-direction: column;
+    margin-top: 5cm;
+    margin-left: 1cm;
     align-items: center;
 }
 
