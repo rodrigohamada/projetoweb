@@ -10,9 +10,8 @@
 </head>
 
 <body>
-
     <header>
-        <a href="index.html"> <!-- Link para a página inicial no Logo -->
+        <a href="index.html">
             <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
         </a>
         <nav>
@@ -51,8 +50,8 @@
                 <a href="#" class="close" id="close">&times;</a>
                 <h2>Cadastro</h2>
                 <form class="register-form" id="register-form">
-                    <input type="text" placeholder="Nome" required>
-                    <input type="text" placeholder="Telefone" required>
+                    <input type="text" placeholder="Nome" name="name" required>
+                    <input type="text" placeholder="Telefone" name="phone" required>
                     <input type="text" placeholder="CEP" id="cep" required>
                     <button type="button" onclick="buscarCEP()">Buscar CEP</button>
                     <div class="address-inputs">
@@ -89,14 +88,20 @@
                             <option value="TO">Tocantins</option>
                         </select>
                         <input type="text" placeholder="Bairro" id="bairro" required>
-                        <input type="text" placeholder="Número" required>
-                        <input type="text" placeholder="Complemento">
+                        <input type="text" placeholder="Número" name="numero" required>
+                        <input type="text" placeholder="Complemento" name="complemento">
                     </div>
-                    <input type="email" placeholder="E-mail" required>
-                    <input type="password" placeholder="Senha" required>
-                    <button type="submit">Cadastrar</button>
+                    <input type="email" placeholder="E-mail" name="email" required>
+                    <input type="password" placeholder="Senha" name="password" required>
+                    <button type="submit" id="register-button">Cadastrar</button>
                 </form>
             </div>
+        </div>
+
+        <!-- Pop-up de confirmação -->
+        <div class="confirmation-popup" style="display:none;">
+            <div class="confirmation-message"></div>
+            <button id="confirm-button">OK</button>
         </div>
 
         <footer class="footer">
@@ -110,7 +115,6 @@
         <script src="./javascript/script.js"></script>
         <script src="./javascript/login.js"></script>
         <script src="./javascript/mobile.js"></script>
-
 </body>
 
 </html>
