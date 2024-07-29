@@ -32,31 +32,33 @@
     </header>
 
     <main id="main-content">
-        <div class="login-form">
+        <div class="login-container">
             <h2>Login</h2>
-            <div class="input-group">
-                <input type="text" name="email" placeholder="E-mail">
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" placeholder="Senha">
-            </div>
-            <button id="login-button" type="submit">Entrar</button>
-            <p class="signup-link">Ainda não tem uma conta? Cadastre-se <a href="#" id="register-popup">aqui</a>.</p>
+            <form id="login-form" class="login-form">
+                <div class="input-group">
+                    <input type="text" name="email" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Senha" required>
+                </div>
+                <button id="login-button" type="submit">Entrar</button>
+            </form>
+            <p class="register-link">Ainda não tem uma conta? Cadastre-se <a href="#" id="register-popup">aqui</a>.</p>
         </div>
 
         <!-- Pop-up de cadastro -->
-        <div class="overlay" id="overlay">
+        <div class="overlay" id="overlay" style="display:none;">
             <div class="popup" id="popup">
                 <a href="#" class="close" id="close">&times;</a>
                 <h2>Cadastro</h2>
                 <form class="register-form" id="register-form">
                     <input type="text" placeholder="Nome" name="name" required>
                     <input type="text" placeholder="Telefone" name="phone" required>
-                    <input type="text" placeholder="CEP" id="cep" required>
-                    <button type="button" onclick="buscarCEP()">Buscar CEP</button>
+                    <input type="text" placeholder="CEP" id="cep" name="cep" required>
+                    <button id="buscar-cep" type="button">Buscar CEP</button>
                     <div class="address-inputs">
-                        <input type="text" placeholder="Rua" id="rua" required>
-                        <input type="text" placeholder="Cidade" id="cidade" required>
+                        <input type="text" placeholder="Rua" id="rua" name="rua" required>
+                        <input type="text" placeholder="Cidade" id="cidade" name="cidade" required>
                         <select name="estado" id="estado" required>
                             <option value="">Selecione o Estado</option>
                             <option value="AC">Acre</option>
@@ -87,7 +89,7 @@
                             <option value="SE">Sergipe</option>
                             <option value="TO">Tocantins</option>
                         </select>
-                        <input type="text" placeholder="Bairro" id="bairro" required>
+                        <input type="text" placeholder="Bairro" id="bairro" name="bairro" required>
                         <input type="text" placeholder="Número" name="numero" required>
                         <input type="text" placeholder="Complemento" name="complemento">
                     </div>
@@ -99,22 +101,23 @@
         </div>
 
         <!-- Pop-up de confirmação -->
-        <div class="confirmation-popup" style="display:none;">
-            <div class="confirmation-message"></div>
+        <div class="confirmation-popup" id="confirmation-popup" style="display:none;">
+            <div class="confirmation-message" id="confirmation-message"></div>
             <button id="confirm-button">OK</button>
         </div>
+    </main>
 
-        <footer class="footer">
-            <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
-                    class="author-link">Rodrigo Hamada</a> & <a
-                    href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank"
-                    class="author-link">Felipe Manganelli</a> | IFSP Campinas</p>
-        </footer>
+    <footer class="footer">
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
+                class="author-link">Rodrigo Hamada</a> & <a
+                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
+                Manganelli</a> | IFSP Campinas</p>
+    </footer>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="./javascript/script.js"></script>
-        <script src="./javascript/login.js"></script>
-        <script src="./javascript/mobile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="./javascript/env.js"></script>
+    <script type="module" src="./javascript/login.js"></script>
+    <script src="./javascript/mobile.js"></script>
 </body>
 
 </html>

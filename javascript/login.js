@@ -1,3 +1,7 @@
+import { auth, db } from './env.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+
 $(document).ready(function () {
     // Abrir pop-up de cadastro
     $('#register-popup').click(function (e) {
@@ -13,7 +17,6 @@ $(document).ready(function () {
     // Submeter formulário de cadastro
     $('#register-form').submit(function (e) {
         e.preventDefault();
-
         // Obter os dados do formulário
         var userData = {
             name: $(this).find('input[name="name"]').val(),
@@ -33,7 +36,6 @@ $(document).ready(function () {
         var allFieldsFilled = Object.values(userData).every(function (value) {
             return value !== '';
         });
-
         if (!allFieldsFilled) {
             showConfirmationPopup('Por favor, preencha todos os campos.');
             return;
@@ -46,11 +48,11 @@ $(document).ready(function () {
         }
 
         // Criar usuário no Firebase Authentication
-        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
+        createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then((userCredential) => {
                 // Adicionar os dados do usuário ao Firestore
                 var user = userCredential.user;
-                return firebase.firestore().collection('users').doc(user.uid).set({
+                return setDoc(doc(db, 'user', user.uid), {
                     name: userData.name,
                     phone: userData.phone,
                     cep: userData.cep,
@@ -61,12 +63,15 @@ $(document).ready(function () {
                     numero: userData.numero,
                     complemento: userData.complemento,
                     email: userData.email
+                    // A senha não é armazenada no Firestore
                 });
             })
             .then(() => {
                 // Exibir mensagem de sucesso e fechar o pop-up
                 showConfirmationPopup('Usuário cadastrado com sucesso!');
                 $('#overlay').fadeOut(300);
+                // Limpar o formulário
+                $('#register-form')[0].reset();
             })
             .catch((error) => {
                 // Exibir mensagem de erro
@@ -74,41 +79,75 @@ $(document).ready(function () {
             });
     });
 
-    // Fechar a mensagem de confirmação de cadastro
-    $(document).on('click', '#confirm-button', function () {
-        $('.confirmation-popup').fadeOut(300);
+    // Submeter formulário de login
+    $('#login-form').submit(function (e) {
+        e.preventDefault();
+        // Obter os dados do formulário de login
+        var email = $(this).find('input[name="email"]').val();
+        var password = $(this).find('input[name="password"]').val();
+
+        // Verificar se o e-mail é válido
+        if (!isValidEmail(email)) {
+            showConfirmationPopup('Por favor, insira um endereço de e-mail válido.');
+            return;
+        }
+
+        // Logar usuário no Firebase Authentication
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Usuário logado com sucesso
+                showConfirmationPopup('Login realizado com sucesso!');
+            })
+            .catch((error) => {
+                // Exibir mensagem de erro
+                showConfirmationPopup('Erro ao fazer login: ' + error.message);
+            });
+    });
+
+    // Função para buscar o endereço pelo CEP
+    function buscarEndereco(cep) {
+        $.ajax({
+            url: `https://viacep.com.br/ws/${cep}/json/`,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (!data.erro) {
+                    $('input[name="rua"]').val(data.logradouro);
+                    $('input[name="bairro"]').val(data.bairro);
+                    $('input[name="cidade"]').val(data.localidade);
+                    $('select[name="estado"]').val(data.uf);
+                } else {
+                    showConfirmationPopup('CEP não encontrado.');
+                }
+            },
+            error: function () {
+                showConfirmationPopup('Erro ao buscar o CEP.');
+            }
+        });
+    }
+
+    // Evento para buscar o endereço pelo CEP
+    $('#buscar-cep').click(function () {
+        var cep = $('input[name="cep"]').val();
+        if (cep) {
+            buscarEndereco(cep);
+        } else {
+            showConfirmationPopup('Por favor, insira um CEP.');
+        }
     });
 });
 
-// Função para buscar informações de endereço pelo CEP utilizando a API dos Correios
-function buscarCEP() {
-    const cep = $('#cep').val().replace(/\D/g, '');
-
-    if (cep.length != 8) {
-        alert('CEP inválido');
-        return;
-    }
-
-    $.getJSON(`https://viacep.com.br/ws/${cep}/json/`, function (data) {
-        if (!("erro" in data)) {
-            $('#rua').val(data.logradouro);
-            $('#cidade').val(data.localidade);
-            $('#estado').val(data.uf);
-            $('#bairro').val(data.bairro);
-        } else {
-            alert('CEP não encontrado');
-        }
+// Função para exibir pop-up de confirmação
+function showConfirmationPopup(message) {
+    $('#confirmation-message').text(message);
+    $('#confirmation-popup').fadeIn(300);
+    $('#confirm-button').click(function () {
+        $('#confirmation-popup').fadeOut(300);
     });
 }
 
-// Função para verificar se um e-mail é válido
+// Função para validar e-mail
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Função para exibir a mensagem de confirmação
-function showConfirmationPopup(message) {
-    $('.confirmation-popup .confirmation-message').text(message);
-    $('.confirmation-popup').fadeIn(300);
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
 }
