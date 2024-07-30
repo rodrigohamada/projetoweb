@@ -52,7 +52,7 @@ $(document).ready(function () {
             .then((userCredential) => {
                 // Adicionar os dados do usuário ao Firestore
                 var user = userCredential.user;
-                return setDoc(doc(db, 'user', user.uid), {
+                return setDoc(doc(db, 'users', user.uid), {
                     name: userData.name,
                     phone: userData.phone,
                     cep: userData.cep,
@@ -97,6 +97,8 @@ $(document).ready(function () {
             .then((userCredential) => {
                 // Usuário logado com sucesso
                 showConfirmationPopup('Login realizado com sucesso!');
+                // Redirecionar o usuário para a dashboard após o login
+                window.location.href = "dashboard.html";
             })
             .catch((error) => {
                 // Exibir mensagem de erro
