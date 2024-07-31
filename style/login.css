@@ -99,212 +99,261 @@ nav .menu li a:hover {
 }
 
 .login-form button:hover {
-    background-color: #1b6e1b;
+    background-color: #1a751d;
 }
 
 .register-link {
-    margin-top: 10px;
     text-align: center;
+    margin-top: 15px;
 }
 
 .register-link a {
     color: #228B22;
-    font-weight: bold;
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s;
 }
 
 .register-link a:hover {
-    color: #1b6e1b;
+    text-decoration: underline;
+    color: #1a751d;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100px;
+    margin-left: 10px;
+    object-fit: contain;
+    transition: transform 0.3s;
+    /* Adiciona uma transição suave de 0.3 segundos para o efeito */
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    /* Aumenta ligeiramente o tamanho do logo quando o cursor do mouse passar por cima */
+}
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.author-link:hover {
+    color: #ffa100;
 }
 
 .overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 1000;
 }
 
 .popup {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-.close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    color: #333;
-    text-decoration: none;
-}
-
-.close:hover {
-    color: #228B22;
-}
-
-.register-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.register-form input,
-.register-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s;
-}
-
-.register-form input:focus,
-.register-form select:focus {
-    border-color: #228B22;
-    outline: none;
-}
-
-.register-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #228B22;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 16px;
-}
-
-.register-form button:hover {
-    background-color: #1b6e1b;
-}
-
-.address-inputs {
-    display: flex;
-    flex-direction: column;
-}
-
-#buscar-cep {
-    padding: 5px 10px;
-    background-color: #228B22;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-bottom: 15px;
-    align-self: flex-start;
-}
-
-#buscar-cep:hover {
-    background-color: #1b6e1b;
-}
-
-.footer {
-    text-align: center;
-    background-color: #228B22;
-    color: white;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.author-link {
-    color: #ffa100;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.author-link:hover {
-    color: #ffc100;
-}
-
-.confirmation-popup {
-    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    max-width: 400px;
+    width: 90%;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 1100;
-    /* Higher than overlay */
+}
+
+.popup form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    max-width: 500px;
+    gap: 10px;
 }
 
-.confirmation-message {
-    margin-bottom: 15px;
-    font-size: 18px;
-    text-align: center;
+.popup input,
+.popup select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
 }
 
-#confirm-button {
-    padding: 10px 20px;
+.popup input:focus,
+.popup select:focus {
+    border-color: #228B22;
+    outline: none;
+}
+
+.popup button {
     background-color: #228B22;
     color: #fff;
     border: none;
     border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+.popup button:hover {
+    background-color: #1a751d;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #ff0000;
+}
+
+.confirmation-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    display: none;
+}
+
+.confirmation-popup .confirmation-message {
+    margin-bottom: 10px;
+    text-align: center;
     font-size: 16px;
 }
 
-#confirm-button:hover {
-    background-color: #1b6e1b;
+.confirmation-popup #confirm-button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-@media screen and (max-width: 768px) {
-    header {
-        padding: 10px 20px;
-    }
+.confirmation-popup #confirm-button:hover {
+    background-color: #f1f1f1;
+}
 
-    nav .menu {
-        display: none;
-        /* Esconde o menu para dispositivos móveis */
-        flex-direction: column;
-        align-items: center;
-        background-color: #228B22;
-        width: 100%;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    }
+input.error {
+    border-color: red;
+}
 
-    nav .menu li {
-        padding: 10px 0;
-        width: 100%;
-        text-align: center;
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.address-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.address-inputs input,
+.address-inputs select {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .address-inputs {
+        grid-template-columns: 1fr;
     }
 
     .mobile-menu-icon {
         display: flex;
-        /* Mostra o ícone de menu móvel */
+        /* Mostra o ícone de menu móvel para dispositivos pequenos */
     }
 
-    .menu-open {
-        display: flex;
+    nav .menu {
+        display: none;
+        /* Esconde o menu para dispositivos móveis até ser aberto */
+        flex-direction: column;
+        gap: 10px;
+        background-color: #228B22;
+        position: absolute;
+        top: 60px;
+        right: 30px;
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 999;
     }
+
+    nav .menu.active {
+        display: flex;
+        /* Mostra o menu quando o ícone for clicado */
+    }
+
+    nav .menu li a {
+        color: #fff;
+    }
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.confirmation-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    color: #4CAF50;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.confirmation-popup .confirmation-message {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.confirmation-popup #confirm-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.confirmation-popup #confirm-button:hover {
+    background-color: #45a049;
 }

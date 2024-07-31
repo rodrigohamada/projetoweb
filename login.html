@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="./style/styles.css">
     <link rel="icon" href="./images/folha.png">
 </head>
-
 <body>
     <header>
         <a href="index.html">
@@ -101,9 +99,11 @@
         </div>
 
         <!-- Pop-up de confirmação -->
-        <div class="confirmation-popup" id="confirmation-popup" style="display:none;">
-            <div class="confirmation-message" id="confirmation-message"></div>
-            <button id="confirm-button">OK</button>
+        <div class="overlay" id="confirmation-overlay" style="display:none;">
+            <div class="confirmation-popup" id="confirmation-popup">
+                <div class="confirmation-message" id="confirmation-message"></div>
+                <button id="confirm-button">OK</button>
+            </div>
         </div>
     </main>
 
@@ -119,5 +119,4 @@
     <script type="module" src="./javascript/login.js"></script>
     <script src="./javascript/mobile.js"></script>
 </body>
-
 </html>
