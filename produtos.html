@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Organic</title>
+    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="stylesheet" href="./style/products.css">
+    <link rel="icon" href="./images/folha.png">
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html"> <!-- Link para a página inicial na Logo -->
+            <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
+        </a>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html" id="home-link">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="login.html" id="login-link">Login</a></li>
+            </ul>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <h1 class="products-title">Produtos</h1>
+        <div class="product-container" id="product-container">
+            <!-- Os produtos serão inseridos aqui dinamicamente -->
+        </div>
+
+        <script>
+            function addToCart(name, description, price) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ name, description, price, quantity: 1 });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Produto adicionado à página de Pedidos!');
+                updateCartCounter();
+            }
+
+            function updateCartCounter() {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let cartCounter = document.getElementById('cart-counter');
+                if (cartCounter) {
+                    cartCounter.innerText = cart.length.toString();
+                }
+            }
+        </script>
+
+    </main>
+
+    <footer class="footer">
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
+                class="author-link">Rodrigo Hamada</a> & <a
+                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
+                Manganelli</a> | IFSP Campinas</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./javascript/script.js"></script>
+    <script src="./javascript/mobile.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <script type="module" src="./javascript/load_produtos.js"></script>
+</body>
+
+</html>
