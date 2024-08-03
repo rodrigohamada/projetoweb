@@ -59,7 +59,10 @@
 
                 let productInfo = document.createElement('div');
                 productInfo.className = 'product-info';
-                productInfo.innerHTML = `<h3>${item.name}</h3><p>${item.description}</p><p class="product-price">R$${item.price.toFixed(2)}</p>`;
+                productInfo.innerHTML = `<img src="${item.image}" alt="${item.name}" class="product-image">
+                                         <h3>${item.name}</h3>
+                                         <p>${item.description}</p>
+                                         <p class="product-price">R$${item.price.toFixed(2)}</p>`;
 
                 let quantityInput = document.createElement('div');
                 quantityInput.className = 'quantity-input';

@@ -40,14 +40,14 @@
         </div>
 
         <script>
-            function addToCart(name, description, price) {
+            function addToCart(name, description, price, image) {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                cart.push({ name, description, price, quantity: 1 });
+                cart.push({ name, description, price, image, quantity: 1 }); // Inclui a imagem
                 localStorage.setItem('cart', JSON.stringify(cart));
                 alert('Produto adicionado à página de Pedidos!');
                 updateCartCounter();
             }
-
+        
             function updateCartCounter() {
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 let cartCounter = document.getElementById('cart-counter');
@@ -56,6 +56,7 @@
                 }
             }
         </script>
+        
 
     </main>
 
