@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +7,9 @@
     <link rel="stylesheet" href="./style/cadastro_produtos.css">
     <link rel="icon" href="./images/folha.png">
 </head>
-
 <body>
-
     <header>
-        <a href="index.html"> <!-- Link para a página inicial na Logo -->
+        <a href="index.html">
             <img src="./images/logo.png" alt="Logo Cooperativa Orgânica" class="logo">
         </a>
         <nav>
@@ -44,22 +41,20 @@
             <div class="input-group">
                 <textarea id="productDescription" placeholder="Descrição do Produto" required></textarea>
             </div>
+            <div class="input-group">
+                <input type="file" id="productImage" accept="image/*" required>
+            </div>
             <button id="register-button" type="submit">Cadastrar Produto</button>
         </div>
     </main>
 
     <footer class="footer">
-        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
-                class="author-link">Rodrigo Hamada</a> & <a
-                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
-                Manganelli</a> | IFSP Campinas</p>
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank" class="author-link">Rodrigo Hamada</a> & <a href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe Manganelli</a> | IFSP Campinas</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./javascript/script.js"></script>
-    <script src="./javascript/login.js"></script>
+    <script type="module" src="./javascript/env.js"></script>
+    <script type="module" src="./javascript/cadastro_produtos.js"></script>
     <script src="./javascript/mobile.js"></script>
-
 </body>
-
 </html>
