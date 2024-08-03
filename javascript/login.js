@@ -17,6 +17,7 @@ $(document).ready(function () {
     // Submeter formulário de cadastro
     $('#register-form').submit(function (e) {
         e.preventDefault();
+
         // Obter os dados do formulário
         var userData = {
             name: $(this).find('input[name="name"]').val(),
@@ -24,7 +25,6 @@ $(document).ready(function () {
             cep: $(this).find('input[name="cep"]').val(),
             rua: $(this).find('input[name="rua"]').val(),
             cidade: $(this).find('input[name="cidade"]').val(),
-            estado: $(this).find('select[name="estado"]').val(),
             estado: $(this).find('select[name="estado"]').val(),
             bairro: $(this).find('input[name="bairro"]').val(),
             numero: $(this).find('input[name="numero"]').val(),
@@ -57,11 +57,12 @@ $(document).ready(function () {
                 showConfirmationMessage('Cadastro realizado com sucesso!');
                 // Fechar pop-up de cadastro
                 $('#overlay').fadeOut(300);
+                $('#register-form')[0].reset(); // Limpar o formulário
             })
             .catch((error) => {
                 // Tratar erros
                 console.error('Erro ao criar usuário:', error);
-                showConfirmationMessage('Erro ao realizar cadastro: ' + error.message);
+                showAlertMessage('Erro ao realizar cadastro: ' + error.message);
             });
     });
 
@@ -79,7 +80,7 @@ $(document).ready(function () {
             .catch((error) => {
                 // Tratar erros de login
                 console.error('Erro ao fazer login:', error);
-                showConfirmationMessage('Erro ao fazer login: ' + error.message);
+                showAlertMessage('Erro ao fazer login: ' + error.message);
             });
     });
 
@@ -94,22 +95,25 @@ $(document).ready(function () {
                     $('#cidade').val(data.localidade);
                     $('#estado').val(data.uf);
                 } else {
-                    showConfirmationMessage('CEP não encontrado.');
+                    showAlertMessage('CEP não encontrado.');
                 }
             }).fail(function () {
-                showConfirmationMessage('Erro ao buscar CEP.');
+                showAlertMessage('Erro ao buscar CEP.');
             });
+        } else {
+            showAlertMessage('Por favor, insira um CEP válido.');
         }
     });
 
-    // Função para exibir mensagem de confirmação
+    // Função para exibir mensagens de confirmação
     function showConfirmationMessage(message) {
-        $('#confirmation-message').text(message);
-        $('#confirmation-overlay').fadeIn(300);
+        if (confirm(message)) {
+            $('#confirmation-popup').fadeOut(300);
+        }
     }
 
-    // Fechar mensagem de confirmação
-    $('#confirm-button').click(function () {
-        $('#confirmation-overlay').fadeOut(300);
-    });
+    // Função para exibir alertas
+    function showAlertMessage(message) {
+        alert(message);
+    }
 });
