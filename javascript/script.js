@@ -40,8 +40,15 @@ $(document).ready(function () {
 
 // Função para carregar produtos do carrinho na página de Cadastro de Pedidos
 function loadCartProducts() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let orderList = document.getElementById('order-list');
+    
+    // Verificar se o elemento 'order-list' existe
+    if (!orderList) {
+        console.log("Elemento 'order-list' não encontrado. Esta função só deve ser chamada na página de pedidos.");
+        return; // Sai da função se o elemento não existir
+    }
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let totalPrice = 0;
 
     orderList.innerHTML = ''; // Limpar conteúdo atual
@@ -53,7 +60,6 @@ function loadCartProducts() {
 
         // Montar HTML do produto
         productElement.innerHTML = `
-            
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-description">${product.description}</p>
@@ -73,12 +79,18 @@ function loadCartProducts() {
     });
 
     // Atualizar preço total
-    document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+    let totalPriceElement = document.getElementById('total-price');
+    if (totalPriceElement) {
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
 }
 
 // Carregar produtos do carrinho ao carregar a página
 document.addEventListener('DOMContentLoaded', function () {
-    loadCartProducts();
+    // Verificar se estamos na página de pedidos antes de chamar loadCartProducts
+    if (document.getElementById('order-list')) {
+        loadCartProducts();
+    }
 });
 
 
