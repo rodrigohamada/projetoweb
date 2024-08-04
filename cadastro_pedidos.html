@@ -21,8 +21,8 @@
                 <li><a href="index.html" id="home-link">Home</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
-                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="pedidos-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="cadastro-produtos-link">Cadastro de Produtos</a></li>
                 <li><a href="login.html" id="login-link">Login</a></li>
             </ul>
             <div class="mobile-menu-icon">
@@ -31,6 +31,8 @@
                 <span></span>
             </div>
         </nav>
+        <button id="logout-button" style="display:none;">Logout</button>
+        <span id="user-email" style="display:none;"></span>
     </header>
 
     <main id="main-content">
@@ -46,6 +48,22 @@
                 href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
                 Manganelli</a> | IFSP Campinas</p>
     </footer>
+
+    <script type="module" src="./javascript/logout.js"></script>
+    <script>
+        // Verificar se o usuário está logado ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                const logoutButton = document.getElementById('logout-button');
+                const userEmailElement = document.getElementById('user-email');
+                if (logoutButton) logoutButton.style.display = 'inline-block';
+                if (userEmailElement) userEmailElement.textContent = user.email;
+                const loginLink = document.getElementById('login-link');
+                if (loginLink) loginLink.style.display = 'none';
+            }
+        });
+    </script>
 
     <script>
         function loadCart() {
@@ -112,20 +130,22 @@
         }
 
         function finalizePurchase() {
-            // Verifica se o usuário está logado
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
-                // Finalizar a compra
-                alert('Compra concluída com sucesso!');
-                localStorage.removeItem('cart');
-                loadCart();
-            } else {
-                // Redireciona para a página de login
-                window.location.href = 'login.html';
-            }
-        }
+        // Verifica se o usuário está logado
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        console.log('Status de Login:', isLoggedIn); // Verifique o valor no console
 
-        window.onload = loadCart;
+        if (isLoggedIn === 'true') {
+            // Finalizar a compra
+            alert('Compra concluída com sucesso!');
+            localStorage.removeItem('cart');
+            loadCart();
+        } else {
+            // Redireciona para a página de login
+            window.location.href = 'login.html';
+        }
+    }
+
+    window.onload = loadCart;
     </script>
 
 </body>

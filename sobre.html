@@ -20,8 +20,8 @@
                 <li><a href="index.html" id="home-link">Home</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
-                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="pedidos-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="cadastro-produtos-link">Cadastro de Produtos</a></li>
                 <li><a href="login.html" id="login-link">Login</a></li>
             </ul>
             <div class="mobile-menu-icon">
@@ -30,6 +30,9 @@
                 <span></span>
             </div>
         </nav>
+        <!-- Adicionar botão de logout e email do usuário -->
+        <button id="logout-button" style="display:none;">Logout</button>
+        <span id="user-email" style="display:none;"></span>
     </header>
 
     <main>
@@ -71,6 +74,9 @@
                 Manganelli</a> | IFSP Campinas</p>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="module" src="./javascript/logout.js"></script>
     <script src="./javascript/mobile.js"></script>
 </body>
 

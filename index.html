@@ -20,8 +20,8 @@
                 <li><a href="index.html" id="home-link">Home</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
-                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="pedidos-link">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="cadastro-produtos-link">Cadastro de Produtos</a></li>
                 <li><a href="login.html" id="login-link">Login</a></li>
             </ul>
             <div class="mobile-menu-icon">
@@ -30,6 +30,9 @@
                 <span></span>
             </div>
         </nav>
+        <!-- Adicionar botão de logout e email do usuário -->
+        <button id="logout-button" style="display:none;">Logout</button>
+        <span id="user-email" style="display:none;"></span>
     </header>
 
     <main id="main-content">
@@ -40,8 +43,7 @@
                         <img src="./images/slide1.jpg" alt="Slide 1">
                         <div class="slide-info">
                             <h2 class="title">Produtos Orgânicos</h2>
-                            <p class="description">Conheça nossa variedade de produtos orgânicos frescos e saudáveis.
-                            </p>
+                            <p class="description">Conheça nossa variedade de produtos orgânicos frescos e saudáveis.</p>
                         </div>
                     </a>
                 </div>
@@ -52,8 +54,7 @@
                         <img src="./images/slide2.png" alt="Slide 2">
                         <div class="slide-info">
                             <h2 class="title">Login</h2>
-                            <p class="description">Faça seu login para acessar sua conta e realizar pedidos com
-                                facilidade.</p>
+                            <p class="description">Faça seu login para acessar sua conta e realizar pedidos com facilidade.</p>
                         </div>
                     </a>
                 </div>
@@ -64,8 +65,7 @@
                         <img src="./images/slide3.jpg" alt="Slide 3">
                         <div class="slide-info">
                             <h2 class="title">Sobre Nós</h2>
-                            <p class="description">Saiba mais sobre nossa cooperativa e nossa missão em fornecer
-                                alimentos orgânicos de qualidade.</p>
+                            <p class="description">Saiba mais sobre nossa cooperativa e nossa missão em fornecer alimentos orgânicos de qualidade.</p>
                         </div>
                     </a>
                 </div>
@@ -112,16 +112,14 @@
     </main>
 
     <footer class="footer">
-        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank"
-                class="author-link">Rodrigo Hamada</a> & <a
-                href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe
-                Manganelli</a> | IFSP Campinas</p>
+        <p>Desenvolvido por <a href="https://br.linkedin.com/in/rodrigo-hamada-109654218" target="_blank" class="author-link">Rodrigo Hamada</a> & <a href="https://www.linkedin.com/in/felipe-manganelli-calocci/" target="_blank" class="author-link">Felipe Manganelli</a> | IFSP Campinas</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="./javascript/login.js"></script>
     <script src="./javascript/script.js"></script>
     <script src="./javascript/mobile.js"></script>
+    <script type="module" src="./javascript/logout.js"></script>
 
     <!-- Biblioteca Slick Carousel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
