@@ -4,10 +4,12 @@
     box-sizing: border-box;
 }
 
+/* Estilo geral do corpo */
 body {
     font-family: Arial, sans-serif;
 }
 
+/* Estilo do cabeçalho */
 header {
     background-color: #228B22;
     color: #fff;
@@ -18,6 +20,7 @@ header {
     flex-wrap: wrap;
 }
 
+/* Estilo do logo */
 .logo {
     max-width: 100%;
     max-height: 100px;
@@ -30,11 +33,12 @@ header {
     transform: scale(1.1);
 }
 
+/* Estilo da navegação */
 nav {
     flex-grow: 1;
-    text-align: center;
 }
 
+/* Estilo do menu */
 .menu {
     list-style-type: none;
     padding: 0;
@@ -74,11 +78,13 @@ nav {
     color: #ffa100;
 }
 
+/* Estilo principal da página */
 main {
     padding: 20px;
-    padding-bottom: 50px; /* Adicionado para garantir espaço para o rodapé fixo */
+    padding-bottom: 50px;
 }
 
+/* Estilo do rodapé */
 footer {
     background-color: #228B22;
     color: #fff;
@@ -91,6 +97,7 @@ footer {
     left: 0;
 }
 
+/* Estilo da seção sobre */
 .about {
     display: flex;
     flex-direction: row;
@@ -132,13 +139,8 @@ footer {
     line-height: 1.6;
 }
 
-.mobile-menu-icon {
-    display: none;
-}
-
 /* Estilos para dispositivos móveis */
 @media screen and (max-width: 768px) {
-
     header {
         flex-direction: column;
         align-items: flex-start;
@@ -215,6 +217,7 @@ footer {
     }
 }
 
+/* Estilo dos links dos autores */
 .author-link {
     color: #fff;
     text-decoration: none;
@@ -225,6 +228,7 @@ footer {
     color: #ffa100;
 }
 
+/* Estilo do botão de logout */
 #logout-button {
     position: absolute;
     top: 10px;
@@ -236,6 +240,7 @@ footer {
     cursor: pointer;
 }
 
+/* Estilo do e-mail do usuário */
 #user-email {
     position: absolute;
     top: 15px;
