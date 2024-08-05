@@ -47,3 +47,30 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.error("Erro ao carregar produtos: ", error);
     }
 });
+
+// Função para adicionar produtos ao carrinho
+function addToCart(name, description, price, image) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex((product) => product.name === name);
+
+    if (existingProductIndex !== -1) {
+        // Se o produto já existir, incrementa a quantidade
+        cart[existingProductIndex].quantity += 1;
+    } else {
+        // Caso contrário, adiciona o produto ao carrinho
+        cart.push({ name, description, price, image, quantity: 1 }); // Inclui a imagem
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Produto adicionado à página de Pedidos!');
+    updateCartCounter();
+}
+
+// Função para atualizar o contador do carrinho
+function updateCartCounter() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartCounter = document.getElementById('cart-counter');
+    if (cartCounter) {
+        cartCounter.innerText = cart.length.toString();
+    }
+}
