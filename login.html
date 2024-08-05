@@ -17,9 +17,10 @@
                 <li><a href="index.html" id="home-link">Home</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="cadastro_pedidos.html" id="login-link">Pedidos</a></li>
-                <li><a href="cadastro_produtos.html" id="login-link">Cadastro de Produtos</a></li>
+                <li><a href="cadastro_pedidos.html" id="pedidos-link" class="protected">Pedidos</a></li>
+                <li><a href="cadastro_produtos.html" id="cadastro-link" class="protected">Cadastro de Produtos</a></li>
                 <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="#" id="logout-link" style="display: none;">Logout</a></li> <!-- Link de logout -->
             </ul>
             <div class="mobile-menu-icon">
                 <span></span>
@@ -112,5 +113,6 @@
     <script type="module" src="./javascript/login.js"></script>
     <script src="./javascript/mobile.js"></script>
     <script type="module" src="./javascript/logout.js"></script>
+    <script type="module" src="./javascript/autenticacao.js"></script>
 </body>
 </html>

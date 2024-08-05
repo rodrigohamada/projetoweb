@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="./style/cadastro_pedidos.css">
     <link rel="icon" href="./images/folha.png">
 </head>
-
 <body>
 
     <header>
@@ -63,9 +61,7 @@
                 if (loginLink) loginLink.style.display = 'none';
             }
         });
-    </script>
 
-    <script>
         function loadCart() {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             let orderList = document.getElementById('order-list');
@@ -130,24 +126,24 @@
         }
 
         function finalizePurchase() {
-        // Verifica se o usuário está logado
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        console.log('Status de Login:', isLoggedIn); // Verifique o valor no console
+            // Verifica se o usuário está logado
+            const user = JSON.parse(localStorage.getItem('user')); // Verifique o objeto 'user' armazenado
+            console.log('Status de Login:', user); // Verifique o valor no console
 
-        if (isLoggedIn === 'true') {
-            // Finalizar a compra
-            alert('Compra concluída com sucesso!');
-            localStorage.removeItem('cart');
-            loadCart();
-        } else {
-            // Redireciona para a página de login
-            window.location.href = 'login.html';
+            if (user) {
+                // Finalizar a compra
+                alert('Compra concluída com sucesso!');
+                localStorage.removeItem('cart');
+                loadCart();
+            } else {
+                // Redireciona para a página de login
+                alert('Você precisa estar logado para concluir a compra.');
+                window.location.href = 'login.html';
+            }
         }
-    }
 
-    window.onload = loadCart;
+        window.onload = loadCart;
     </script>
 
 </body>
-
 </html>

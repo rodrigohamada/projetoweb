@@ -1,5 +1,5 @@
 import { auth, db } from './env.js';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
 import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -112,4 +112,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Verificar o estado de autenticação
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            localStorage.setItem('user', JSON.stringify({
+                email: user.email,
+                uid: user.uid
+            }));
+        } else {
+            localStorage.removeItem('user');
+        }
+    });
 });
