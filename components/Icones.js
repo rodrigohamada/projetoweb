@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const IconRow = () => {
+const Icones = () => {
   return (
     <div className="icon-container">
       <div className="icon-row">
@@ -42,4 +42,4 @@ const IconRow = () => {
   );
 };
 
-export default IconRow;
+export default Icones;
