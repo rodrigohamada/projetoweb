@@ -15,6 +15,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -22,10 +23,16 @@ header {
     max-height: 100px;
     margin-left: 10px;
     object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
 }
 
 nav {
     flex-grow: 1;
+    text-align: center;
 }
 
 .menu {
@@ -33,14 +40,11 @@ nav {
     padding: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .menu li {
-    margin-left: 20px;
-}
-
-.menu li:first-child {
-    margin-left: 0;
+    margin: 0 10px;
 }
 
 .menu li a {
@@ -71,32 +75,37 @@ nav {
 }
 
 main {
-    padding-bottom: 50px;
+    padding: 20px;
+    padding-bottom: 50px; /* Adicionado para garantir espaço para o rodapé fixo */
 }
 
-footer.footer {
+footer {
     background-color: #228B22;
     color: #fff;
     text-align: center;
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 
 .about {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px auto;
 }
 
 .about-left,
 .about-right {
+    flex: 1 1 45%;
     display: flex;
     flex-direction: column;
-    margin-top: 5cm;
-    margin-left: 1cm;
     align-items: center;
+    margin: 20px;
 }
 
 .about-image {
@@ -123,41 +132,52 @@ footer.footer {
     line-height: 1.6;
 }
 
-.footer {
-    background-color: #228B22;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-}
-
 .mobile-menu-icon {
-    display: block;
-    /* Garante que o ícone seja visível */
+    display: none;
 }
 
 /* Estilos para dispositivos móveis */
 @media screen and (max-width: 768px) {
 
-    /* Esconde o menu principal em telas menores */
-    .menu {
-        display: none;
+    header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    /* Exibe o ícone do menu para dispositivos móveis */
+    nav {
+        width: 100%;
+        text-align: left;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: #228B22;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    .menu.open {
+        display: flex;
+    }
+
+    .menu.open li {
+        margin: 10px 0;
+    }
+
     .mobile-menu-icon {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        margin-right: 10px;
+        margin: 10px 0;
     }
 
-    /* Ícone do menu */
     .mobile-menu-icon span {
         width: 25px;
         height: 3px;
@@ -166,7 +186,6 @@ footer.footer {
         transition: 0.4s;
     }
 
-    /* Animação do ícone de menu ao ser clicado */
     .mobile-menu-icon.open span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 5px);
     }
@@ -179,41 +198,21 @@ footer.footer {
         transform: rotate(45deg) translate(-5px, -5px);
     }
 
-    /* Exibe o menu quando estiver aberto */
-    .menu.open {
-        display: flex;
+    .about {
         flex-direction: column;
         align-items: center;
-        background-color: #228B22;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        padding-top: 10px;
     }
 
-    .menu.open li {
+    .about-left, .about-right {
         margin: 10px 0;
+        flex: 1 1 100%;
+        max-width: 100%;
     }
-}
 
-.logo {
-    max-width: 100%;
-    max-height: 100px;
-    margin-left: 10px;
-    object-fit: contain;
-    transition: transform 0.3s;
-    /* Adiciona uma transição suave de 0.3 segundos para o efeito */
-}
-
-.logo:hover {
-    transform: scale(1.1);
-    /* Aumenta ligeiramente o tamanho do logo quando o cursor do mouse passar por cima */
-}
-
-.logo a {
-    text-decoration: none;
-    /* Remove o sublinhado padrão do link */
+    .about-image img {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 .author-link {
@@ -226,7 +225,6 @@ footer.footer {
     color: #ffa100;
 }
 
-/* Adiciona o evento de Logout */
 #logout-button {
     position: absolute;
     top: 10px;
