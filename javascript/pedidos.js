@@ -61,7 +61,9 @@ function updateTotalPrice() {
 }
 
 // Função para finalizar a compra
-function finalizePurchase() {
+function finalizePurchase(event) {
+    event.preventDefault(); // Previne o comportamento padrão do botão
+
     // Verifica se o usuário está logado
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -155,5 +157,8 @@ if (logoutButton) {
 // Adicionar event listener ao botão de finalizar compra
 const finalizeButton = document.getElementById('finalize-button');
 if (finalizeButton) {
+    // Remova eventuais listeners duplicados
+    finalizeButton.removeEventListener('click', finalizePurchase);
+    // Adicione o listener de clique
     finalizeButton.addEventListener('click', finalizePurchase);
 }
