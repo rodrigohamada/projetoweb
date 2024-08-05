@@ -1,30 +1,33 @@
+/* Reseta margens, preenchimentos e define box-sizing para todos os elementos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Define o estilo básico do corpo */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
+/* Estilo do cabeçalho, incluindo logo e navegação */
 header {
     background-color: #228B22;
     color: #fff;
-    padding: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .logo {
-    max-width: 100%;
-    max-height: 100px;
-    margin-left: 10px;
-    object-fit: contain;
+    max-width: 150px;
     transition: transform 0.3s;
 }
 
@@ -79,6 +82,7 @@ nav ul li a:hover {
     color: #ffa100;
 }
 
+/* Estilo do menu móvel para telas pequenas */
 .mobile-menu-icon {
     display: none;
     flex-direction: column;
@@ -133,22 +137,26 @@ nav ul li a:hover {
     color: #ffa100;
 }
 
-.main-content {
+/* Estilo principal do conteúdo da página */
+#main-content {
     max-width: 100%;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 50px 10px;
+    margin: 50px auto;
+    text-align: center; /* Centraliza o texto dentro do contêiner principal */
 }
 
-.order-form h2 {
+/* Estilo do título na seção de pedidos */
+h1 {
     background-color: transparent;
     color: #000;
     padding: 20px 0;
-    text-align: center;
+    text-align: center; /* Centraliza o título */
 }
 
+/* Estilo da lista de pedidos */
 #order-list {
     margin-top: 20px;
     display: flex;
@@ -157,6 +165,7 @@ nav ul li a:hover {
     align-items: center;
 }
 
+/* Estilo dos itens individuais na lista de pedidos */
 .order-item {
     border: 1px solid #ccc;
     padding: 10px;
@@ -165,63 +174,64 @@ nav ul li a:hover {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    flex-direction: column;
 }
 
+/* Estilo das imagens dos produtos */
 .order-item img {
     width: 100px;
     height: auto;
     border-radius: 5px;
-    margin-right: 20px;
+    margin-bottom: 10px;
 }
 
+/* Estilo das informações do produto */
 .product-info {
     flex: 1;
-    margin-left: 20px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.product-info h3 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.product-info p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
+/* Estilo dos preços dos produtos */
 .product-price {
     font-weight: bold;
+    color: #228B22;
 }
 
+/* Estilo do formulário de quantidade */
 .quantity-input {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.quantity-input label {
-    margin-right: 10px;
-}
-
-#order-total {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 20px;
-}
-
+/* Estilo do botão "Remover" */
 .remove-button {
-    background-color: #ff0000;
-    color: #fff;
+    background-color: #ff4c4c;
+    color: white;
     border: none;
     border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    padding: 5px 10px;
-    transition: background-color 0.3s;
+    font-size: 1em;
+    margin-top: 10px; /* Ajusta a margem para que o botão fique abaixo do formulário de quantidade */
 }
 
 .remove-button:hover {
-    background-color: #cc0000;
+    background-color: #e60000;
 }
 
+/* Estilo do total dos pedidos */
+.total-price {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilo do botão de finalizar a compra */
 #finalize-button {
     width: auto;
     padding: 8px 20px;
@@ -239,24 +249,27 @@ nav ul li a:hover {
     background-color: #1a751d;
 }
 
+/* Estilo do rodapé */
 .footer {
     background-color: #228B22;
-    color: #fff;
+    color: white;
     text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    left: 0;
+    padding: 10px 0;
+    margin-top: 15.3cm;
+    flex-shrink: 0;
 }
 
-.footer p {
-    margin: 0;
-    color: #fff;
-    font-size: 14px;
+/* Estilo dos links do rodapé */
+.author-link {
+    color: white;
+    text-decoration: none;
 }
 
-/* Estilos para dispositivos móveis */
+.author-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para dispositivos móveis */
 @media screen and (max-width: 768px) {
     .menu {
         display: none;
@@ -311,151 +324,4 @@ nav ul li a:hover {
     #order-total {
         font-size: 1em;
     }
-}
-
-.author-link {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.author-link:hover {
-    color: #ffa100;
-}
-
-/* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #228B22;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-}
-
-.logo {
-    max-width: 150px;
-}
-
-.menu {
-    list-style-type: none;
-    padding: 0;
-}
-
-.menu li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.menu a {
-    color: white;
-    text-decoration: none;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#order-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-}
-
-.order-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 15px;
-    width: 90%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.product-info {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.product-price {
-    color: #228B22;
-    font-weight: bold;
-}
-
-.quantity-input {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.quantity-input label {
-    margin-right: 10px;
-}
-
-.remove-button {
-    background-color: #ff4c4c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.remove-button:hover {
-    background-color: #e60000;
-}
-
-.total-price {
-    text-align: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.footer {
-    background-color: #228B22;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 15.3cm;
-    flex-shrink: 0;
-}
-
-.author-link {
-    color: white;
-    text-decoration: none;
-}
-
-.author-link:hover {
-    text-decoration: underline;
-}
-
-#finalize-button {
-    width: auto;
-    padding: 8px 20px;
-    background-color: #228B22;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    display: block;
-    margin: 20px auto 0;
-}
-
-#finalize-button:hover {
-    background-color: #1a751d;
 }

@@ -1,5 +1,3 @@
-// cart.js
-
 // Função para adicionar produto ao carrinho
 function addToCart(name, description, price, image) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -92,17 +90,97 @@ function updateTotalPrice() {
 // Função para finalizar a compra
 function finalizePurchase() {
     // Verifica se o usuário está logado
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-        // Finalizar a compra
-        alert('Compra concluída com sucesso!');
-        localStorage.removeItem('cart');
-        loadCart();
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        // Exibir resumo do pedido e perguntar se deseja confirmar a compra
+        const confirmation = confirm(`Resumo do pedido:\n\n${getOrderSummary()}\n\nDeseja confirmar a compra?`);
+        if (confirmation) {
+            alert('Compra concluída com sucesso!');
+            localStorage.removeItem('cart');
+            loadCart();
+        }
     } else {
-        // Redireciona para a página de login
+        alert('Você precisa estar logado para concluir a compra.');
         window.location.href = 'login.html';
     }
 }
 
+// Função para obter o resumo do pedido
+function getOrderSummary() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let summary = cart.map(item => `${item.name} (Quantidade: ${item.quantity}) - R$${(item.price * item.quantity).toFixed(2)}`).join('\n');
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    summary += `\n\nTotal: R$${totalPrice.toFixed(2)}`;
+    return summary;
+}
+
 // Inicializa o carrinho ao carregar a página
 window.onload = loadCart;
+
+// Atualiza a visibilidade do botão de logout e do link de login
+document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        const logoutButton = document.getElementById('logout-button');
+        const userEmailElement = document.getElementById('user-email');
+        if (logoutButton) logoutButton.style.display = 'inline-block';
+        if (userEmailElement) userEmailElement.textContent = user.email;
+        const loginLink = document.getElementById('login-link');
+        if (loginLink) loginLink.style.display = 'none';
+    }
+});
+
+// Ativar/desativar o menu para dispositivos móveis
+$(document).ready(function () {
+    $('.mobile-menu-icon').click(function () {
+        $('nav ul.menu').toggleClass('menu-active');
+    });
+
+    // Fechar o menu quando um item for clicado
+    $('nav ul.menu li a').click(function () {
+        $('nav ul.menu').removeClass('menu-active');
+    });
+
+    // Função para atualizar o conteúdo do slide
+    function updateSlideInfo(currentSlide) {
+        const slideInfo = $('.slick-slide').eq(currentSlide).find('.slide-info');
+        const title = slideInfo.find('.title').text();
+        const description = slideInfo.find('.description').text();
+        $('.slide-info h2').text(title);
+        $('.slide-info p').text(description);
+    }
+
+    // Inicialização do Slick Carousel
+    $('.slider').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        afterChange: function (event, slick, currentSlide) {
+            updateSlideInfo(currentSlide);
+        }
+    });
+
+    // Navegação manual pelos slides
+    $('#home-link').click(function (event) {
+        event.preventDefault();
+        window.location.href = "index.html";
+    });
+});
+
+// Adicionar event listener ao botão de logout
+const logoutButton = document.getElementById('logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', function () {
+        localStorage.removeItem('user');
+        window.location.href = 'login.html';
+    });
+}
+
+// Adicionar event listener ao botão de finalizar compra
+const finalizeButton = document.getElementById('finalize-button');
+if (finalizeButton) {
+    finalizeButton.addEventListener('click', finalizePurchase);
+}
