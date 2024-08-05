@@ -1,80 +1,103 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const orderList = document.getElementById('order-list');
-    const totalPriceElement = document.getElementById('total-price');
-    let totalPrice = 0;
-
-    function updateTotalPrice() {
-        totalPriceElement.textContent = totalPrice.toFixed(2);
+document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        const logoutButton = document.getElementById('logout-button');
+        const userEmailElement = document.getElementById('user-email');
+        if (logoutButton) logoutButton.style.display = 'inline-block';
+        if (userEmailElement) userEmailElement.textContent = user.email;
+        const loginLink = document.getElementById('login-link');
+        if (loginLink) loginLink.style.display = 'none';
     }
+});
 
-    function addProductToOrder(product) {
-        const orderItem = document.createElement('div');
-        orderItem.classList.add('order-item');
+function loadCart() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let orderList = document.getElementById('order-list');
+    orderList.innerHTML = '';
 
-        const productInfo = document.createElement('div');
-        productInfo.classList.add('product-info');
+    cart.forEach((item, index) => {
+        let orderItem = document.createElement('div');
+        orderItem.className = 'order-item';
 
-        const productName = document.createElement('h3');
-        productName.textContent = product.name;
+        let productInfo = document.createElement('div');
+        productInfo.className = 'product-info';
+        productInfo.innerHTML = `<img src="${item.image}" alt="${item.name}" class="product-image">
+                                 <h3>${item.name}</h3>
+                                 <p>${item.description}</p>
+                                 <p class="product-price">R$${item.price.toFixed(2)}</p>`;
 
-        const productDescription = document.createElement('p');
-        productDescription.textContent = product.description;
+        let quantityInput = document.createElement('div');
+        quantityInput.className = 'quantity-input';
+        quantityInput.innerHTML = `<label>Quantidade:</label><input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">`;
 
-        const productPrice = document.createElement('p');
-        productPrice.classList.add('product-price');
-        productPrice.textContent = `R$ ${product.price.toFixed(2)}`;
+        let removeButton = document.createElement('button');
+        removeButton.className = 'remove-button';
+        removeButton.innerText = 'Remover';
+        removeButton.onclick = () => removeItem(index);
 
-        productInfo.appendChild(productName);
-        productInfo.appendChild(productDescription);
-        productInfo.appendChild(productPrice);
-
-        const productImage = document.createElement('img');
-        productImage.src = product.image;
-        productImage.alt = product.name;
-
-        const quantityInput = document.createElement('div');
-        quantityInput.classList.add('quantity-input');
-
-        const quantityLabel = document.createElement('label');
-        quantityLabel.textContent = 'Quantidade:';
-
-        const quantityField = document.createElement('input');
-        quantityField.type = 'number';
-        quantityField.value = 1;
-        quantityField.min = 1;
-
-        quantityInput.appendChild(quantityLabel);
-        quantityInput.appendChild(quantityField);
-
-        quantityField.addEventListener('change', function () {
-            const quantity = parseInt(quantityField.value);
-            const productTotal = quantity * product.price;
-            totalPrice = totalPrice - (product.price * product.quantity) + productTotal;
-            product.quantity = quantity;
-            updateTotalPrice();
-        });
-
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('remove-button');
-        removeButton.textContent = 'Remover';
-
-        removeButton.addEventListener('click', function () {
-            orderList.removeChild(orderItem);
-            totalPrice -= product.price * product.quantity;
-            updateTotalPrice();
-        });
-
-        orderItem.appendChild(productImage);
         orderItem.appendChild(productInfo);
         orderItem.appendChild(quantityInput);
         orderItem.appendChild(removeButton);
 
         orderList.appendChild(orderItem);
+    });
 
-        product.quantity = 1;
-        totalPrice += product.price;
-        updateTotalPrice();
+    updateTotalPrice();
+}
+
+function updateQuantity(index, quantity) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity = parseInt(quantity);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateTotalPrice();
+}
+
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+}
+
+function updateTotalPrice() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    document.getElementById('total-price').innerText = `Total: R$${totalPrice.toFixed(2)}`;
+
+    // Mostrar ou esconder o botão "Concluir Compra"
+    const finalizeButton = document.getElementById('finalize-button');
+    if (cart.length > 0) {
+        finalizeButton.style.display = 'block';
+    } else {
+        finalizeButton.style.display = 'none';
     }
+}
 
+function finalizePurchase() {
+    // Verifica se o usuário está logado
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log('Status de Login:', user);
 
-});
+    if (user) {
+        // Exibir resumo do pedido e perguntar se deseja confirmar a compra
+        const confirmation = confirm(`Resumo do pedido:\n\n${getOrderSummary()}\n\nDeseja confirmar a compra?`);
+        if (confirmation) {
+            alert('Compra concluída com sucesso!');
+            localStorage.removeItem('cart');
+            loadCart();
+        }
+    } else {
+        alert('Você precisa estar logado para concluir a compra.');
+        window.location.href = 'login.html';
+    }
+}
+
+function getOrderSummary() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let summary = cart.map(item => `${item.name} (Quantidade: ${item.quantity}) - R$${(item.price * item.quantity).toFixed(2)}`).join('\n');
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    summary += `\n\nTotal: R$${totalPrice.toFixed(2)}`;
+    return summary;
+}
+
+window.onload = loadCart;
