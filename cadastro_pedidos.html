@@ -45,6 +45,19 @@
         <div id="order-list"></div>
         <div class="total-price" id="total-price"></div>
         <button id="finalize-button" style="display:none;" onclick="finalizePurchase()">Concluir Compra</button>
+        
+        <!-- Pop-up Modal para Confirmar Pedido -->
+        <div id="confirmation-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <h2>Resumo do Pedido</h2>
+                <div id="order-summary"></div>
+                <div class="modal-footer">
+                    <button id="confirm-button" class="btn-confirm">Confirmar</button>
+                    <button id="cancel-button" class="btn-cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">

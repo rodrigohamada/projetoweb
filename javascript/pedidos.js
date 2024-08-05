@@ -67,13 +67,11 @@ function finalizePurchase(event) {
     // Verifica se o usuário está logado
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-        // Exibir resumo do pedido e perguntar se deseja confirmar a compra
-        const confirmation = confirm(`Resumo do pedido:\n\n${getOrderSummary()}\n\nDeseja confirmar a compra?`);
-        if (confirmation) {
-            alert('Compra concluída com sucesso!');
-            localStorage.removeItem('cart');
-            loadCart();
-        }
+        // Exibir modal de confirmação
+        const modal = document.getElementById('confirmation-modal');
+        const orderSummaryElement = document.getElementById('order-summary');
+        orderSummaryElement.innerHTML = `<pre>${getOrderSummary()}</pre>`;
+        modal.style.display = 'flex'; // Mostra o modal
     } else {
         alert('Você precisa estar logado para concluir a compra.');
         window.location.href = 'login.html';
@@ -162,3 +160,36 @@ if (finalizeButton) {
     // Adicione o listener de clique
     finalizeButton.addEventListener('click', finalizePurchase);
 }
+
+// Controle do modal
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('confirmation-modal');
+    const closeButton = document.querySelector('.close-button');
+    const confirmButton = document.getElementById('confirm-button');
+    const cancelButton = document.getElementById('cancel-button');
+
+    // Fecha o modal ao clicar no botão de fechar
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Confirma a compra ao clicar no botão de confirmar
+    confirmButton.addEventListener('click', function() {
+        alert('Compra concluída com sucesso!');
+        localStorage.removeItem('cart');
+        loadCart();
+        modal.style.display = 'none';
+    });
+
+    // Cancela a compra ao clicar no botão de cancelar
+    cancelButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Fecha o modal ao clicar fora do conteúdo do modal
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
