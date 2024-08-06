@@ -62,7 +62,9 @@ function updateTotalPrice() {
 
 // Função para finalizar a compra
 function finalizePurchase(event) {
-    event.preventDefault(); // Previne o comportamento padrão do botão
+    if (event) {
+        event.preventDefault(); 
+    }
 
     // Verifica se o usuário está logado
     const user = JSON.parse(localStorage.getItem('user'));
@@ -70,7 +72,7 @@ function finalizePurchase(event) {
         // Exibir modal de confirmação
         const modal = document.getElementById('confirmation-modal');
         const orderSummaryElement = document.getElementById('order-summary');
-        
+
         // Exibir informações do pedido
         orderSummaryElement.innerHTML = `<pre>${getOrderSummary()}</pre>`;
 
@@ -116,95 +118,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginLink = document.getElementById('login-link');
         if (loginLink) loginLink.style.display = 'none';
     }
-});
 
-// Ativar/desativar o menu para dispositivos móveis
-$(document).ready(function () {
-    $('.mobile-menu-icon').click(function () {
-        $('nav ul.menu').toggleClass('menu-active');
-    });
+    // Controle do modal
+    const modal = document.getElementById('confirmation-modal');
+    const closeButton = document.getElementById('cancel-button');
+    const confirmButton = document.getElementById('confirm-button');
 
-    // Fechar o menu quando um item for clicado
-    $('nav ul.menu li a').click(function () {
-        $('nav ul.menu').removeClass('menu-active');
-    });
-
-    // Função para atualizar o conteúdo do slide
-    function updateSlideInfo(currentSlide) {
-        const slideInfo = $('.slick-slide').eq(currentSlide).find('.slide-info');
-        const title = slideInfo.find('.title').text();
-        const description = slideInfo.find('.description').text();
-        $('.slide-info h2').text(title);
-        $('.slide-info p').text(description);
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
     }
 
-    // Inicialização do Slick Carousel
-    $('.slider').slick({
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: false,
-        dots: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        afterChange: function (event, slick, currentSlide) {
-            updateSlideInfo(currentSlide);
-        }
-    });
+    if (confirmButton) {
+        confirmButton.addEventListener('click', function() {
+            alert('Compra concluída com sucesso!');
+            localStorage.removeItem('cart');
+            loadCart();
+            modal.style.display = 'none';
+        });
+    }
 
-    // Navegação manual pelos slides
-    $('#home-link').click(function (event) {
-        event.preventDefault();
-        window.location.href = "index.html";
-    });
-});
-
-// Adicionar event listener ao botão de logout
-const logoutButton = document.getElementById('logout-button');
-if (logoutButton) {
-    logoutButton.addEventListener('click', function () {
-        localStorage.removeItem('user');
-        window.location.href = 'login.html';
-    });
-}
-
-// Adicionar event listener ao botão de finalizar compra
-const finalizeButton = document.getElementById('finalize-button');
-if (finalizeButton) {
-    // Remova eventuais listeners duplicados
-    finalizeButton.removeEventListener('click', finalizePurchase);
-    // Adicione o listener de clique
-    finalizeButton.addEventListener('click', finalizePurchase);
-}
-
-// Controle do modal
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('confirmation-modal');
-    const closeButton = document.querySelector('.close-button');
-    const confirmButton = document.getElementById('confirm-button');
-    const cancelButton = document.getElementById('cancel-button');
-
-    // Fecha o modal ao clicar no botão de fechar
-    closeButton.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    // Confirma a compra ao clicar no botão de confirmar
-    confirmButton.addEventListener('click', function() {
-        alert('Compra concluída com sucesso!');
-        localStorage.removeItem('cart');
-        loadCart();
-        modal.style.display = 'none';
-    });
-
-    // Cancela a compra ao clicar no botão de cancelar
-    cancelButton.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    // Fecha o modal ao clicar fora do conteúdo do modal
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
     });
+
+    // Adiciona event listener ao botão "Concluir Compra"
+    const finalizeButton = document.getElementById('finalize-button');
+    if (finalizeButton) {
+        finalizeButton.removeEventListener('click', finalizePurchase); // Remove eventuais listeners duplicados
+        finalizeButton.addEventListener('click', finalizePurchase); // Adiciona o listener de clique
+    }
 });

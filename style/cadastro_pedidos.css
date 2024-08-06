@@ -12,8 +12,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
 }
 
 /* Estilo do cabeçalho, incluindo logo e navegação */
@@ -42,9 +40,9 @@ nav {
 
 nav ul {
     list-style-type: none;
-    padding: 0;
     display: flex;
     justify-content: center;
+    padding: 0;
 }
 
 nav ul li {
@@ -102,13 +100,7 @@ nav ul li a:hover {
     align-items: center;
 }
 
-.menu li {
-    margin-right: 20px;
-}
-
-.menu li:last-child {
-    margin-right: 0;
-}
+/* Redundância removida */
 
 .menu li a {
     color: #fff;
@@ -350,11 +342,11 @@ h1 {
     max-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.3s;
-    border-radius: 8px; /* Adiciona bordas arredondadas ao conteúdo do modal */
+    border-radius: 12px; /* Adiciona bordas arredondadas ao conteúdo do modal */
 }
 
 .modal-footer {
-    text-align: right;
+    text-align: center; /* Centraliza o botão */
     padding-top: 10px;
 }
 
@@ -365,6 +357,15 @@ h1 {
     border: none;
     border-radius: 5px; /* Borda arredondada para os botões */
     font-size: 1em;
+}
+
+#confirm-button {
+    background-color: #4CAF50; /* Cor verde para o botão de confirmar */
+    color: white;
+}
+
+#confirm-button:hover {
+    background-color: #45a049;
 }
 
 .close-button {
@@ -379,25 +380,6 @@ h1 {
 .close-button:focus {
     color: #000;
     text-decoration: none;
-    cursor: pointer;
-}
-
-.btn-confirm {
-    background-color: #4CAF50; /* Cor verde para o botão de confirmar */
-    color: white;
-}
-
-.btn-cancel {
-    background-color: #f44336; /* Cor vermelha para o botão de cancelar */
-    color: white;
-}
-
-.btn-confirm:hover {
-    background-color: #45a049;
-}
-
-.btn-cancel:hover {
-    background-color: #e60000;
 }
 
 @keyframes fadeIn {
