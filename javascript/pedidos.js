@@ -2,29 +2,35 @@
 function loadCart() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let orderList = document.getElementById('order-list');
+    let emptyCartMessage = document.getElementById('empty-cart-message');
     orderList.innerHTML = '';
 
-    cart.forEach((item, index) => {
-        let orderItem = document.createElement('div');
-        orderItem.className = 'order-item';
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+    } else {
+        emptyCartMessage.style.display = 'none';
+        cart.forEach((item, index) => {
+            let orderItem = document.createElement('div');
+            orderItem.className = 'order-item';
 
-        // Estrutura do item do pedido, incluindo imagem
-        orderItem.innerHTML = `
-            <div class="product-info">
-                <img src="${item.image}" alt="${item.name}" class="product-image">
-                <h3>${item.name}</h3>
-                <p>${item.description}</p>
-                <p class="product-price">R$${item.price.toFixed(2)}</p>
-            </div>
-            <div class="quantity-control">
-                <label>Quantidade:</label>
-                <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
-            </div>
-            <button class="remove-button" onclick="removeItem(${index})">Remover</button>
-        `;
+            // Estrutura do item do pedido, incluindo imagem
+            orderItem.innerHTML = `
+                <div class="product-info">
+                    <img src="${item.image}" alt="${item.name}" class="product-image">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <p class="product-price">R$${item.price.toFixed(2)}</p>
+                </div>
+                <div class="quantity-control">
+                    <label>Quantidade:</label>
+                    <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                </div>
+                <button class="remove-button" onclick="removeItem(${index})">Remover</button>
+            `;
 
-        orderList.appendChild(orderItem);
-    });
+            orderList.appendChild(orderItem);
+        });
+    }
 
     updateTotalPrice();
 }
@@ -63,7 +69,7 @@ function updateTotalPrice() {
 // Função para finalizar a compra
 function finalizePurchase(event) {
     if (event) {
-        event.preventDefault(); 
+        event.preventDefault(); // Previne o comportamento padrão do botão
     }
 
     // Verifica se o usuário está logado
@@ -118,8 +124,59 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginLink = document.getElementById('login-link');
         if (loginLink) loginLink.style.display = 'none';
     }
+});
 
-    // Controle do modal
+// Ativar/desativar o menu para dispositivos móveis
+$(document).ready(function () {
+    $('.mobile-menu-icon').click(function () {
+        $('nav ul.menu').toggleClass('menu-active');
+    });
+
+    // Fechar o menu quando um item for clicado
+    $('nav ul.menu li a').click(function () {
+        $('nav ul.menu').removeClass('menu-active');
+    });
+
+    // Função para atualizar o conteúdo do slide
+    function updateSlideInfo(currentSlide) {
+        const slideInfo = $('.slick-slide').eq(currentSlide).find('.slide-info');
+        const title = slideInfo.find('.title').text();
+        const description = slideInfo.find('.description').text();
+        $('.slide-info h2').text(title);
+        $('.slide-info p').text(description);
+    }
+
+    // Inicialização do Slick Carousel
+    $('.slider').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        afterChange: function (event, slick, currentSlide) {
+            updateSlideInfo(currentSlide);
+        }
+    });
+
+    // Navegação manual pelos slides
+    $('#home-link').click(function (event) {
+        event.preventDefault();
+        window.location.href = "index.html";
+    });
+});
+
+// Adicionar event listener ao botão de logout
+const logoutButton = document.getElementById('logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', function () {
+        localStorage.removeItem('user');
+        window.location.href = 'login.html';
+    });
+}
+
+// Controle do modal
+document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('confirmation-modal');
     const closeButton = document.getElementById('cancel-button');
     const confirmButton = document.getElementById('confirm-button');
