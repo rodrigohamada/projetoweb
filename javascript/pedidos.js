@@ -70,7 +70,22 @@ function finalizePurchase(event) {
         // Exibir modal de confirmação
         const modal = document.getElementById('confirmation-modal');
         const orderSummaryElement = document.getElementById('order-summary');
+        
+        // Exibir informações do pedido
         orderSummaryElement.innerHTML = `<pre>${getOrderSummary()}</pre>`;
+
+        // Exibir informações do usuário
+        const userInfoElement = document.getElementById('user-info');
+        userInfoElement.innerHTML = `
+            <h4>Informações do Usuário:</h4>
+            <p>Nome: ${user.name}</p>
+            <p>Email: ${user.email}</p>
+            <p>Telefone: ${user.phone}</p>
+            <p>Endereço: ${user.rua}, ${user.numero}, ${user.bairro}</p>
+            <p>Cidade: ${user.cidade} - ${user.estado}</p>
+            <p>CEP: ${user.cep}</p>
+        `;
+
         modal.style.display = 'flex'; // Mostra o modal
     } else {
         alert('Você precisa estar logado para concluir a compra.');

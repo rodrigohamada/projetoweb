@@ -1,6 +1,6 @@
 import { auth, db } from './env.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js';
-import { doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+import { doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const registerPopup = document.getElementById('register-popup');
@@ -73,12 +73,31 @@ document.addEventListener('DOMContentLoaded', function () {
             const password = this.password.value;
 
             signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
+                .then(async (userCredential) => {
                     const user = userCredential.user;
-                    localStorage.setItem('user', JSON.stringify({
-                        email: user.email,
-                        uid: user.uid
-                    }));
+                    
+                    // Obtenha as informações do Firestore
+                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        
+                        // Armazene no localStorage
+                        localStorage.setItem('user', JSON.stringify({
+                            email: user.email,
+                            uid: user.uid,
+                            name: userData.name,
+                            phone: userData.phone,
+                            cep: userData.cep,
+                            rua: userData.rua,
+                            cidade: userData.cidade,
+                            estado: userData.estado,
+                            bairro: userData.bairro,
+                            numero: userData.numero,
+                            complemento: userData.complemento
+                        }));
+                    }
+                    
                     window.location.href = 'index.html';
                 })
                 .catch((error) => {
@@ -116,10 +135,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Verificar o estado de autenticação
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            localStorage.setItem('user', JSON.stringify({
-                email: user.email,
-                uid: user.uid
-            }));
+            // Aqui você pode obter o documento do usuário novamente, se necessário
+            getDoc(doc(db, 'users', user.uid)).then(userDoc => {
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    localStorage.setItem('user', JSON.stringify({
+                        email: user.email,
+                        uid: user.uid,
+                        name: userData.name,
+                        phone: userData.phone,
+                        cep: userData.cep,
+                        rua: userData.rua,
+                        cidade: userData.cidade,
+                        estado: userData.estado,
+                        bairro: userData.bairro,
+                        numero: userData.numero,
+                        complemento: userData.complemento
+                    }));
+                }
+            });
         } else {
             localStorage.removeItem('user');
         }

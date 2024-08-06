@@ -350,6 +350,7 @@ h1 {
     max-width: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.3s;
+    border-radius: 8px; /* Adiciona bordas arredondadas ao conteúdo do modal */
 }
 
 .modal-footer {
@@ -361,6 +362,9 @@ h1 {
     padding: 10px 20px;
     margin-left: 10px;
     cursor: pointer;
+    border: none;
+    border-radius: 5px; /* Borda arredondada para os botões */
+    font-size: 1em;
 }
 
 .close-button {
@@ -381,13 +385,11 @@ h1 {
 .btn-confirm {
     background-color: #4CAF50; /* Cor verde para o botão de confirmar */
     color: white;
-    border: none;
 }
 
 .btn-cancel {
     background-color: #f44336; /* Cor vermelha para o botão de cancelar */
     color: white;
-    border: none;
 }
 
 .btn-confirm:hover {
