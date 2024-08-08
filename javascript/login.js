@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Cadastro realizado com sucesso!');
                     document.getElementById('overlay').style.display = 'none';
                     registerForm.reset();
+                    
+                    // Redireciona para a página principal
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
                     console.error('Erro ao criar usuário:', error);
