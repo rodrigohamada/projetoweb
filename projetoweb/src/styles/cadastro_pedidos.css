@@ -1,0 +1,388 @@
+/* Reseta margens, preenchimentos e define box-sizing para todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define o estilo básico do corpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo do cabeçalho, incluindo logo e navegação */
+header {
+    background-color: #228B22;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-width: 150px;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+nav {
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+nav ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffa100;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+}
+
+nav ul li a:hover {
+    color: #ffa100;
+}
+
+/* Estilo do menu móvel para telas pequenas */
+.mobile-menu-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.mobile-menu-icon span {
+    height: 3px;
+    width: 25px;
+    background-color: #fff;
+    margin: 4px 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Redundância removida */
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.menu li a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffa100;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.menu li a:hover::before {
+    transform: scaleX(1);
+}
+
+.menu li a:hover {
+    color: #ffa100;
+}
+
+/* Estilo principal do conteúdo da página */
+#main-content {
+    max-width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    text-align: center; /* Centraliza o texto dentro do contêiner principal */
+}
+
+/* Estilo do título na seção de pedidos */
+h1 {
+    background-color: transparent;
+    color: #000;
+    padding: 20px 0;
+    text-align: center; /* Centraliza o título */
+}
+
+/* Estilo da lista de pedidos */
+#order-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Estilo dos itens individuais na lista de pedidos */
+.order-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    flex-direction: column;
+}
+
+/* Estilo das imagens dos produtos */
+.order-item img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Estilo das informações do produto */
+.product-info {
+    flex: 1;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilo dos preços dos produtos */
+.product-price {
+    font-weight: bold;
+    color: #228B22;
+}
+
+/* Estilo do formulário de quantidade */
+.quantity-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo do botão "Remover" */
+.remove-button {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px; /* Ajusta a margem para que o botão fique abaixo do formulário de quantidade */
+}
+
+.remove-button:hover {
+    background-color: #e60000;
+}
+
+/* Estilo do total dos pedidos */
+.total-price {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilo do botão de finalizar a compra */
+#finalize-button {
+    width: auto;
+    padding: 8px 20px;
+    background-color: #228B22;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto 0;
+}
+
+#finalize-button:hover {
+    background-color: #1a751d;
+}
+
+/* Estilo do rodapé */
+.footer {
+    background-color: #228B22;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 15.3cm;
+    flex-shrink: 0;
+}
+
+/* Estilo dos links do rodapé */
+.author-link {
+    color: white;
+    text-decoration: none;
+}
+
+.author-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para dispositivos móveis */
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-right: 10px;
+        z-index: 100;
+    }
+
+    .mobile-menu-icon span {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+
+    .mobile-menu-icon.open span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 5px);
+    }
+
+    .mobile-menu-icon.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-icon.open span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+
+    .menu.open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #228B22;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding-top: 10px;
+        z-index: 99;
+    }
+
+    .menu.open li {
+        margin: 10px 0;
+    }
+
+    #order-total {
+        font-size: 1em;
+    }
+}
+
+/* Estilo para o pop-up modal */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1000; /* Mantém o modal acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f9f9f9;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s;
+    border-radius: 12px; /* Adiciona bordas arredondadas ao conteúdo do modal */
+}
+
+.modal-footer {
+    text-align: center; /* Centraliza o botão */
+    padding-top: 10px;
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; /* Borda arredondada para os botões */
+    font-size: 1em;
+}
+
+#confirm-button {
+    background-color: #4CAF50; /* Cor verde para o botão de confirmar */
+    color: white;
+}
+
+#confirm-button:hover {
+    background-color: #45a049;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
