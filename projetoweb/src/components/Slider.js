@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // Importa o componente Link do React Router
 import slide1 from "../assets/images/slide1.jpg";
 import slide2 from "../assets/images/slide2.png";
 import slide3 from "../assets/images/slide3.jpg";
-import "../styles/styles.css"; 
+import "../styles/styles.css";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -45,14 +46,17 @@ const Slider = () => {
         <div
           key={index}
           className={`slide-item ${index === currentSlide ? 'active' : ''}`}
+          style={{ display: index === currentSlide ? "block" : "none" }} // Apenas o slide ativo é exibido
         >
-          <a href={slide.link}>
-            <img src={slide.src} alt={slide.alt} />
-            <div className="slide-info">
-              <h2 className="title">{slide.title}</h2>
-              <p className="description">{slide.description}</p>
-            </div>
-          </a>
+          {index === currentSlide && ( // O link só aparece para o slide ativo
+            <Link to={slide.link}>
+              <img src={slide.src} alt={slide.alt} />
+              <div className="slide-info">
+                <h2 className="title">{slide.title}</h2>
+                <p className="description">{slide.description}</p>
+              </div>
+            </Link>
+          )}
         </div>
       ))}
     </div>
