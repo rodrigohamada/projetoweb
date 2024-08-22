@@ -1,6 +1,5 @@
 import React from "react";
 // import Header from "../components/Header"; // Remova ou comente essa linha
-import Footer from "../components/Footer";
 import MobileMenuIcon from "../components/MobileMenuIcon";
 import Logout from "../components/Logout";
 import "../styles/sobre.css";
@@ -40,7 +39,6 @@ const Sobre = () => {
           </div>
         </section>
       </main>
-      <Footer />
       <Logout />
       <MobileMenuIcon />
     </div>

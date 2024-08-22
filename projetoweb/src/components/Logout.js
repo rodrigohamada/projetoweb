@@ -20,8 +20,8 @@ const Logout = () => {
   const handleLogout = () => {
     signOut(auth).then(() => {
       console.log('Usuário deslogado com sucesso');
-      localStorage.removeItem('user');
-      window.location.href = 'index.html';
+      localStorage.removeItem('user');  // Remove do localStorage
+      window.location.href = '/';  // Redireciona após logout
     }).catch((error) => {
       console.error('Erro ao fazer logout:', error);
     });
@@ -30,14 +30,9 @@ const Logout = () => {
   return (
     <div className="logout-container">
       {user && (
-        <>
-          <span id="user-email" style={{ marginRight: '10px' }}>
-            {user.email}
-          </span>
-          <button id="logout-button" onClick={handleLogout}>
-            Logout
-          </button>
-        </>
+        <button id="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       )}
     </div>
   );
