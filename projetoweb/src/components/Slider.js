@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Importa o componente Link do React Router
+import { Link } from "react-router-dom";
 import slide1 from "../assets/images/slide1.jpg";
 import slide2 from "../assets/images/slide2.png";
 import slide3 from "../assets/images/slide3.jpg";
