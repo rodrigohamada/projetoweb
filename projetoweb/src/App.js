@@ -8,9 +8,9 @@ import Sobre from "./pages/Sobre";
 import Produtos from "./pages/Produtos";
 import CadastroPedidos from "./pages/CadastroPedidos";
 import Login from "./components/Login";
-import CadastroProdutos from "./pages/CadastroProdutos"; // Importa a página de CadastroProdutos
+import CadastroProdutos from "./pages/CadastroProdutos"; 
 import "./styles/styles.css";
-import "./styles/products.css";
+import "./styles/produtos.css";
 import "./styles/cadastro_pedidos.css";
 import "./styles/login.css";
 
@@ -34,7 +34,7 @@ function App() {
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/cadastro_pedidos" element={<CadastroPedidos />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/cadastro_produtos" element={<CadastroProdutos />} /> {/* Rota para CadastroProdutos */}
+            <Route path="/cadastro_produtos" element={<CadastroProdutos />} /> 
           </Routes>
         </main>
         <Footer />
