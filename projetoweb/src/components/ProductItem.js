@@ -8,7 +8,6 @@ function ProductItem({ imagem, titulo, descricao, preco, onAddToCart }) {
         <p className="product-price">
           {preco !== undefined ? `R$${preco.toFixed(2)}` : "Preço não disponível"}
         </p>
-        {/* Adiciona a classe buy-button */}
         <button className="buy-button" onClick={onAddToCart}>
           Comprar
         </button>
