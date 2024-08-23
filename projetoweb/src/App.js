@@ -7,11 +7,12 @@ import Footer from "./components/Footer";
 import Sobre from "./pages/Sobre";
 import Produtos from "./pages/Produtos";
 import CadastroPedidos from "./pages/CadastroPedidos";
-import Login from "./components/Login"; // Importa a página de Login
+import Login from "./components/Login";
+import CadastroProdutos from "./pages/CadastroProdutos"; // Importa a página de CadastroProdutos
 import "./styles/styles.css";
-import "./styles/products.css"; 
-import "./styles/cadastro_pedidos.css"; 
-import "./styles/login.css"; // Importa os estilos específicos da página de Login
+import "./styles/products.css";
+import "./styles/cadastro_pedidos.css";
+import "./styles/login.css";
 
 function App() {
   return (
@@ -29,10 +30,11 @@ function App() {
                 </>
               }
             />
-            <Route path="/sobre" element={<Sobre />} /> {/* Rota para a página Sobre */}
-            <Route path="/produtos" element={<Produtos />} /> {/* Rota para a página Produtos */}
-            <Route path="/cadastro_pedidos" element={<CadastroPedidos />} /> {/* Rota para a página CadastroPedidos */}
-            <Route path="/login" element={<Login />} /> {/* Rota para a página Login */}
+            <Route path="/sobre" element={<Sobre />} />
+            <Route path="/produtos" element={<Produtos />} />
+            <Route path="/cadastro_pedidos" element={<CadastroPedidos />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro_produtos" element={<CadastroProdutos />} /> {/* Rota para CadastroProdutos */}
           </Routes>
         </main>
         <Footer />
