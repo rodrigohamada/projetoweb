@@ -1,5 +1,4 @@
 import React from "react";
-// import Header from "../components/Header"; // Remova ou comente essa linha
 import MobileMenuIcon from "../components/MobileMenuIcon";
 import Logout from "../components/Logout";
 import "../styles/sobre.css";
@@ -7,7 +6,6 @@ import "../styles/sobre.css";
 const Sobre = () => {
   return (
     <div>
-      {/* Remova <Header /> */}
       <main>
         <section className="about">
           <div className="about-left">

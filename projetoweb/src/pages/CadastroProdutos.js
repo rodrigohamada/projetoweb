@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, db, storage } from '../store/env'; // Certifique-se de importar corretamente do arquivo env.js
+import { auth, db, storage } from '../store/env';
 import { collection, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import '../styles/cadastro_produtos.css';
