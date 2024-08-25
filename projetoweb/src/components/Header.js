@@ -36,23 +36,27 @@ const Header = () => {
     setMobileMenuOpen(!isMobileMenuOpen); // Alterna o estado do menu móvel
   };
 
+  // Função para fechar o menu móvel automaticamente ao clicar em qualquer link
+  const handleLinkClick = () => {
+    if (isMobileMenuOpen) {
+      setMobileMenuOpen(false); // Fecha o menu móvel
+    }
+  };
+
   return (
     <header>
       <Link to="/"><img src={logo} alt="Logo Cooperativa Orgânica" className="logo" /></Link>
       <nav>
         <ul className={`menu ${isMobileMenuOpen ? "open" : ""}`}> {/* Aplica a classe "open" se o menu móvel estiver aberto */}
-          <li><Link to="/" id="home-link">Home</Link></li>
-          <li><Link to="/sobre">Sobre</Link></li>
-          <li><Link to="/produtos">Produtos</Link></li>
-          <li><Link to="/cadastro_pedidos" id="pedidos-link">Pedidos</Link></li>
-          {user ? (
-            <>
-              <li><Link to="/cadastro_produtos" id="cadastro-produtos-link">Cadastro de Produtos</Link></li>
-              <button id="logout-button" onClick={handleLogout}>Logout</button>
-              <span id="user-email">{user.email}</span>
-            </>
-          ) : (
-            <li><Link to="/login" id="login-link">Login</Link></li>
+          <li><Link to="/" onClick={handleLinkClick} id="home-link">Home</Link></li>
+          <li><Link to="/sobre" onClick={handleLinkClick}>Sobre</Link></li>
+          <li><Link to="/produtos" onClick={handleLinkClick}>Produtos</Link></li>
+          <li><Link to="/cadastro_pedidos" onClick={handleLinkClick} id="pedidos-link">Pedidos</Link></li>
+          {user && (
+            <li><Link to="/cadastro_produtos" onClick={handleLinkClick} id="cadastro-produtos-link">Cadastro de Produtos</Link></li>
+          )}
+          {!user && (
+            <li><Link to="/login" onClick={handleLinkClick} id="login-link">Login</Link></li>
           )}
         </ul>
         <div className="mobile-menu-controls">
@@ -66,6 +70,12 @@ const Header = () => {
             onClick={toggleMobileMenu}
           />
         </div>
+        {user && (
+          <>
+            <button id="logout-button" onClick={handleLogout}>Logout</button>
+            <span id="user-email">{user.email}</span>
+          </>
+        )}
       </nav>
     </header>
   );
