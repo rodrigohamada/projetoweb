@@ -1,13 +1,15 @@
+/* Body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* Header */
 header {
     display: flex;
     align-items: center;
@@ -17,16 +19,13 @@ header {
     color: #fff;
 }
 
+/* Navigation Menu */
 nav .menu {
     list-style: none;
     display: flex;
     gap: 20px;
     margin: 0;
     padding: 0;
-}
-
-nav .menu li {
-    display: inline;
 }
 
 nav .menu li a {
@@ -42,7 +41,6 @@ nav .menu li a:hover {
 
 .mobile-menu-icon {
     display: none;
-    /* Esconde o ícone de menu móvel para dispositivos grandes */
     cursor: pointer;
     flex-direction: column;
     justify-content: space-between;
@@ -57,6 +55,7 @@ nav .menu li a:hover {
     transition: all 0.3s ease-in-out;
 }
 
+/* Login Container */
 .login-container {
     flex: 1;
     max-width: 400px;
@@ -106,6 +105,7 @@ nav .menu li a:hover {
     background-color: #1a751d;
 }
 
+/* Register Link */
 .register-link {
     text-align: center;
     margin-top: 15px;
@@ -123,20 +123,20 @@ nav .menu li a:hover {
     color: #1a751d;
 }
 
+/* Logo */
 .logo {
     max-width: 100%;
     max-height: 100px;
     margin-left: 10px;
     object-fit: contain;
     transition: transform 0.3s;
-    /* Adiciona uma transição suave de 0.3 segundos para o efeito */
 }
 
 .logo:hover {
     transform: scale(1.1);
-    /* Aumenta ligeiramente o tamanho do logo quando o cursor do mouse passar por cima */
 }
 
+/* Author Link */
 .author-link {
     color: #fff;
     text-decoration: none;
@@ -147,7 +147,8 @@ nav .menu li a:hover {
     color: #ffa100;
 }
 
-.overlay {
+/* Popup & Overlay */
+.overlay, .popup, .confirmation-popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -155,67 +156,62 @@ nav .menu li a:hover {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
-    display: none; /* Inicialmente oculto */
-  }
+    display: none;
+    overflow-y: auto; /* Adicionado para permitir rolagem */
+}
 
-  .popup {
-    position: fixed;
+.popup {
+    position: relative; /* Atualizado para permitir centralização no overlay */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 1001;
-    display: none; /* Inicialmente oculto */
-    max-width: 400px; /* Define um limite máximo para a largura */
-    min-width: 300px; /* Define uma largura mínima */
-    width: 90%; /* Torna o pop-up responsivo, ocupando 90% da largura da tela */
+    max-width: 400px;
+    width: 90%;
     border-radius: 10px;
+    z-index: 1001;
+    max-height: 90vh; /* Limita a altura para 90% da viewport */
+    overflow-y: auto; /* Adiciona a barra de rolagem */
 }
 
-  .overlay.show, .popup.show {
-    display: block; /* Exibir quando ativo */
-  }
+.popup.show, .overlay.show {
+    display: block;
+}
 
-  .popup form {
+/* Para impedir a rolagem do corpo quando o pop-up estiver aberto */
+body.popup-open {
+    overflow: hidden;
+}
+
+.popup form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.popup input,
-.popup select {
+.popup input, .popup select, .popup button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     transition: border-color 0.3s;
-}
-
-.popup input,
-.popup select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s;
-    width: 100%; /* Certifica que os campos ocupem 100% da largura disponível */
+    width: 100%;
 }
 
 .popup button {
     background-color: #228B22;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Certifica que o botão ocupe 100% da largura disponível */
 }
 
 .popup button:hover {
     background-color: #1a751d;
 }
 
+/* Close Button */
 .close {
     position: absolute;
     top: 10px;
@@ -230,17 +226,11 @@ nav .menu li a:hover {
     color: #ff0000;
 }
 
+/* Confirmation Popup */
 .confirmation-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
 .confirmation-content {
@@ -251,6 +241,11 @@ nav .menu li a:hover {
     text-align: center;
     max-width: 400px;
     width: 90%;
+}
+
+.confirmation-popup .confirmation-message {
+    margin-bottom: 15px;
+    font-size: 18px;
 }
 
 #confirmation-ok-button {
@@ -268,11 +263,12 @@ nav .menu li a:hover {
     background-color: #45a049;
 }
 
-
+/* Error Input */
 input.error {
     border-color: red;
 }
 
+/* Footer */
 .footer {
     background-color: #333;
     color: #fff;
@@ -281,9 +277,10 @@ input.error {
     position: relative;
     bottom: 0;
     width: 100%;
-    margin-top: auto; /* Empurra o footer para o fim do conteúdo */
+    margin-top: auto;
 }
 
+/* Address Inputs */
 .address-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -291,11 +288,11 @@ input.error {
     margin-top: 10px;
 }
 
-.address-inputs input,
-.address-inputs select {
+.address-inputs input, .address-inputs select {
     grid-column: span 2;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
     .address-inputs {
         grid-template-columns: 1fr;
@@ -303,12 +300,10 @@ input.error {
 
     .mobile-menu-icon {
         display: flex;
-        /* Mostra o ícone de menu móvel para dispositivos pequenos */
     }
 
     nav .menu {
         display: none;
-        /* Esconde o menu para dispositivos móveis até ser aberto */
         flex-direction: column;
         gap: 10px;
         background-color: #228B22;
@@ -322,57 +317,9 @@ input.error {
 
     nav .menu.active {
         display: flex;
-        /* Mostra o menu quando o ícone for clicado */
     }
 
     nav .menu li a {
         color: #fff;
     }
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-.confirmation-popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    color: #4CAF50;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-
-.confirmation-popup .confirmation-message {
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.confirmation-popup #confirm-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.confirmation-popup #confirm-button:hover {
-    background-color: #45a049;
 }
